@@ -26,7 +26,7 @@ function Home() {
 
       {/* second home sec start */}
         <div className="mt-10">
-          <div className="flex flex-wrap align-middle justify-center gap-9 sm:gap-48">
+          <div className="flex flex-wrap align-middle justify-center gap-9 lg:gap-32">
             <div>
               <div className="text-5xl font-bold">
                 <div className="pl-3 text-xl">
@@ -35,7 +35,7 @@ function Home() {
                 <p>Skill Development</p>
                 <p>Schemes For All</p>
               </div>
-              <div className="w-80 flex align-middle justify-between">
+              <div className="w-96 flex align-middle justify-between">
                 <div>
                   <div className="flex ">
                     <p className="font-bold text-sm pr-3">01</p>
@@ -54,7 +54,7 @@ function Home() {
                   <div className="p-2 pl-6"><p>sfdsfds</p></div>
                 </div>
               </div>
-              <div className="w-80 flex align-middle justify-between">
+              <div className="w-96 flex align-middle justify-between">
                 <div>
                   <div className="flex">
                     <p className="font-bold text-sm pr-3">03</p>

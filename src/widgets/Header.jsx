@@ -80,7 +80,7 @@ function Header() {
     <header className="">
       <nav className="">
         {/* Navigation Bar */}
-        <div className={`w-full bg-[#003F7D] p-5 flex justify-end`}>
+        <div className={`w-full bg-[#003F7D] p-2 flex justify-end`}>
           <div className="flex gap-3">
             <OutlineButton text1={"Student Login"} />
             <FillButton text2={"Frenchise Login"} />
@@ -103,7 +103,7 @@ function Header() {
             <i
               className={`fa-solid ${
                 isMenuOpen
-                  ? "fa-xmark relative z-10 py-1 text-3xl font-bold"
+                  ? "fa-xmark relative z-20 py-1 text-3xl font-bold"
                   : "fa-bars text-3xl font-bold"
               }`}
             ></i>
@@ -111,7 +111,7 @@ function Header() {
 
           {/* Sliding Menu */}
           <div
-            className={`block w-full h-full -mt-2 p-6 bg-slate-400 md:hidden fixed transition-transform duration-300 ease-in-out ${
+            className={`z-10 block w-full h-full -mt-2 p-6 bg-slate-400 md:hidden fixed transition-transform duration-300 ease-in-out ${
               isMenuOpen
                 ? "transform translate-x-[-13px]"
                 : "transform -translate-x-[-800px]"
@@ -419,7 +419,7 @@ function Header() {
       {/* bg-[url('./assets/headerimage/herosec.png')] */}
       {!hideHeroSection() && (
         <div className="flex align-middle justify-center gap-10 w-auto h-auto bg-cover animate-slidein">
-          <div className="px-1 mt-7 p-5 m-auto max-w-7xl">
+          <div className="px-5 mt-7 p-5 m-auto max-w-7xl">
             <div className="">
               <div className="w-96">
                 <p className=" font-bold text-3xl md:text-5xl text-[#003F7D] tracking-wide">
