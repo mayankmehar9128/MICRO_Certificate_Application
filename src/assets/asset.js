@@ -21,6 +21,7 @@ import image19 from "./homeimage/ISO2700.svg";
 import image20 from "./homeimage/ISO2999.svg";
 import image21 from "./homeimage/ISO9001.svg";
 import image22 from "./homeimage/ISO20000.svg";
+// import image23 from "./aboutimages/aboutpage.svg";
 
 export const assets = {
     image1,
@@ -45,4 +46,5 @@ export const assets = {
     image20,
     image21,
     image22,
+    // image23,
 }

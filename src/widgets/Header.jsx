@@ -23,6 +23,7 @@ function Header() {
       "/ContactUs",
       "/Course",
       "/FrenchiseReg",
+      "/FrenchiseLogin",
       "/StudentEnq",
       "/StudentLogin",
       "/StudentSearch",
@@ -77,41 +78,18 @@ function Header() {
 
   return (
     <header className="">
-      <nav className="bg-slate-100">
+      <nav className="">
         {/* Navigation Bar */}
-        <div className={`w-full bg-slate-100 p-5 hidden`}>
-          <div className="flex flex-col gap-4 w-full justify-around md:flex md:flex-row md:justify-around md:items-center">
-            {/* Social Links */}
-            <div className="flex gap-7 text-2xl">
-              <a href="">
-                <i className="fa-brands fa-x-twitter"></i>
-              </a>
-              <a href="">
-                <i className="fa-brands fa-facebook"></i>
-              </a>
-              <a href="">
-                <i className="fa-brands fa-linkedin"></i>
-              </a>
-              <a href="">
-                <i className="fa-brands fa-instagram"></i>
-              </a>
-            </div>
-            <div className="gap-5 flex flex-col text-base md:flex md:flex-row md:items-center md:justify-end text-cyan-50">
-              <div className="flex items-center gap-3">
-                <i className="fa-solid fa-phone"></i>
-                <span>+91 9128102151</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <i className="fa-solid fa-envelope"></i>
-                <span>mayankmehar4@gmail.com</span>
-              </div>
-            </div>
+        <div className={`w-full bg-[#003F7D] p-5 flex justify-end`}>
+          <div className="flex gap-3">
+            <OutlineButton text1={"Student Login"} />
+            <FillButton text2={"Frenchise Login"} />
           </div>
         </div>
 
         <div
-          className={` flex item-center justify-between w-full h-20 md:h-20 p-3 bg-[#FDFDFD] ${
-            isScrolled ? "fixed top-0 z-50 transition-all" : "transition-all"
+          className={`flex item-center justify-between w-full h-20 md:h-20 p-3 bg-[#FDFDFD] ${
+            isScrolled ? "fixed top-0 z-50 animate-slidein" : ""
           }`}
         >
           {/* Logo and Menu */}
@@ -252,7 +230,7 @@ function Header() {
             </div>
           </div>
 
-          <div className="text-[#8A948C] gap-1 hidden text-base font-semibold md:flex">
+          <div className="text-[#8A948C] gap-1 hidden text-sm md:text-sm font-normal md:font-semibold md:flex">
             {/* Large Screen NavLinks */}
             <div className=" pt-1 pl-2 pr-2 pb-1">
               <NavLink
@@ -268,7 +246,7 @@ function Header() {
             </div>
             <div className="relative transition-all pt-1 pl-2 pr-2 pb-1 group">
               <NavLink
-                to="/Mission"
+                to="/AboutUs"
                 className={({ isActive }) =>
                   isActive
                     ? "text-white hover:bg-orange-400 bg-orange-400 rounded-md hover:text-white transition-all pl-2 pr-2 pt-1 pb-1"
@@ -317,42 +295,6 @@ function Header() {
             </div>
             <div className="relative transition-all pt-1 pl-2 pr-2 pb-1 group">
               <NavLink
-                to="/Course"
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-white hover:bg-orange-400 bg-orange-400 rounded-md hover:text-white transition-all pl-2 pr-2 pt-1 pb-1"
-                    : ""
-                }
-              >
-                Course
-              </NavLink>
-
-              {/* Dropdown Container */}
-              <div className="transition-all absolute right-0 hidden group-hover:block bg-[#FDFDFD] text-[#8A948C] shadow-lg rounded-lg w-full mt-1">
-                <NavLink
-                  to="/Commerce"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "block px-4 py-2 bg-orange-500 text-white"
-                      : "block px-4 py-2 hover:bg-orange-500 hover:text-white"
-                  }
-                >
-                  Commerce
-                </NavLink>
-                <NavLink
-                  to="/Computer"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "block px-4 py-2 bg-orange-500 text-white"
-                      : "block px-4 py-2 hover:bg-orange-500 hover:text-white"
-                  }
-                >
-                  Computer
-                </NavLink>
-              </div>
-            </div>
-            <div className="relative transition-all pt-1 pl-2 pr-2 pb-1 group">
-              <NavLink
                 to="/FrenchiseReg"
                 className={({ isActive }) =>
                   isActive
@@ -389,18 +331,18 @@ function Header() {
             </div>
             <div className="relative transition-all pt-1 pl-2 pr-2 pb-1 group">
               <NavLink
-                to="/StudentEng"
+                to="/StudentEnq"
                 className={({ isActive }) =>
                   isActive
                     ? "text-white hover:bg-orange-400 bg-orange-400 rounded-md hover:text-white transition-all pl-2 pr-2 pt-1 pb-1"
                     : ""
                 }
               >
-                Student Enquiry Details
+                Student Enquiry
               </NavLink>
 
               {/* Dropdown Container */}
-              <div className="absolute right-0 hidden group-hover:block bg-[#FDFDFD] text-[#8A948C] shadow-lg rounded-lg w-full mt-1">
+              <div className="absolute right-0 z-10 hidden group-hover:block bg-[#FDFDFD] text-[#8A948C] shadow-lg rounded-lg w-full mt-1">
                 <NavLink
                   to="/StudentEnq"
                   className={({ isActive }) =>
@@ -433,9 +375,41 @@ function Header() {
                 </NavLink>
               </div>
             </div>
-            <div className="flex gap-3">
-              <OutlineButton text1={"Student Login"} />
-              <FillButton text2={"Frenchise Login"} />
+            <div className="relative transition-all pt-1 pl-2 pr-11 pb-1 group">
+              <NavLink
+                to="/Course"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-white hover:bg-orange-400 bg-orange-400 rounded-md hover:text-white transition-all pl-2 pr-2 pt-1 pb-1"
+                    : ""
+                }
+              >
+                Course
+              </NavLink>
+
+              {/* Dropdown Container */}
+              <div className="transition-all absolute right-0 z-10 hidden group-hover:block bg-[#FDFDFD] text-[#8A948C] shadow-lg rounded-lg w-full mt-1">
+                <NavLink
+                  to="/Commerce"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block px-4 py-2 bg-orange-500 text-white"
+                      : "block px-4 py-2 hover:bg-orange-500 hover:text-white"
+                  }
+                >
+                  Commerce
+                </NavLink>
+                <NavLink
+                  to="/Computer"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block px-4 py-2 bg-orange-500 text-white"
+                      : "block px-4 py-2 hover:bg-orange-500 hover:text-white"
+                  }
+                >
+                  Computer
+                </NavLink>
+              </div>
             </div>
           </div>
         </div>
@@ -494,13 +468,13 @@ function Header() {
       )}
 
       {/* Hero section for specific routes */}
-      {hideHeroSection() && (
-        <div className="flex flex-col align-middle justify-around w-full h-60 bg-cover bg-[url('./assets/headerimage/bg-pheader.jpg')]">
+      {/* {hideHeroSection() && (
+        <div className="flex flex-col align-middle justify-around w-full h-60 bg-cover bg-[url('./assets/headerimage/aboutpage.svg')]">
           <div className="w-full text-white font-bold p-5 m-auto max-w-7xl">
             <p className="text-4xl md:text-5xl">{getHeroText()}</p>
           </div>
         </div>
-      )}
+      )} */}
     </header>
   );
 }
