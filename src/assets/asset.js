@@ -22,7 +22,9 @@ import image20 from "./homeimage/ISO2999.svg";
 import image21 from "./homeimage/ISO9001.svg";
 import image22 from "./homeimage/ISO20000.svg";
 import image23 from "./aboutimages/aboutherosecimg.png";
-
+import image24 from "./aboutimages/aboutpagecircleimg.png";
+import image25 from "./aboutimages/OurMission.png";
+import image26 from "./aboutimages/OurVission.png";
 export const assets = {
     image1,
     image2,
@@ -47,4 +49,7 @@ export const assets = {
     image21,
     image22,
     image23,
+    image24,
+    image25,
+    image26
 }

@@ -306,7 +306,7 @@ function Header() {
               </NavLink>
 
               {/* Dropdown Container */}
-              <div className="transition-all absolute right-0 hidden group-hover:block bg-[#FDFDFD] text-[#8A948C] shadow-lg rounded-lg w-full mt-1">
+              <div className="z-10 transition-all absolute right-0 hidden group-hover:block bg-[#FDFDFD] text-[#8A948C] shadow-lg rounded-lg w-full mt-1">
                 <NavLink
                   to="/FrenchiseReg"
                   className={({ isActive }) =>
