@@ -25,6 +25,8 @@ import image23 from "./aboutimages/aboutherosecimg.png";
 import image24 from "./aboutimages/aboutpagecircleimg.png";
 import image25 from "./aboutimages/OurMission.png";
 import image26 from "./aboutimages/OurVission.png";
+import image27 from "./contectusimages/Email.svg";
+import image28 from "./contectusimages/Customer.svg";
 export const assets = {
     image1,
     image2,
@@ -51,5 +53,7 @@ export const assets = {
     image23,
     image24,
     image25,
-    image26
+    image26,
+    image27,
+    image28,
 }
