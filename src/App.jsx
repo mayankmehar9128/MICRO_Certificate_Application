@@ -13,8 +13,8 @@ import StudentSearch from './pages/Student/StudentSearch';
 import FrenchiseReg from './pages/Frenchise/FrenchiseReg';
 import FrenchiseLogin from './pages/Frenchise/FrenchiseLogin';
 import AdminLogin from './pages/Admin/AdminLogin';
-import Mission from './pages/Landing/Mission';
-import Vision from './pages/Landing/Vision';
+// import Mission from './pages/Landing/Mission';
+// import Vision from './pages/Landing/Vision';
 
 function App() {
 
@@ -33,8 +33,8 @@ function App() {
               <Route path="/FrenchiseReg" element={<FrenchiseReg />} />
               <Route path="/FrenchiseLogin" element={<FrenchiseLogin />} />
               <Route path="/AdminLogin" element={<AdminLogin />} />
-              <Route path="/Mission" element={<Mission />} />
-              <Route path="/Vision" element={<Vision />} />
+              {/* <Route path="/Mission" element={<Mission />} /> */}
+              {/* <Route path="/Vision" element={<Vision />} /> */}
             </Routes>
           </div>
       <Footer />

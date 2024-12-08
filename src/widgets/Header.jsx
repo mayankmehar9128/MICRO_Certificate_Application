@@ -6,6 +6,7 @@ import FillButton from "../components/FillButton";
 import HerosecFillBtn from "../components/Herosecfillbtn";
 import React from "react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,8 +28,8 @@ function Header() {
       "/StudentEnq",
       "/StudentLogin",
       "/StudentSearch",
-      "/Mission",
-      "/Vision"
+      // "/Mission",
+      // "/Vision"
     ];
     return hiddenRoutes.includes(location.pathname);
   };
@@ -50,10 +51,10 @@ function Header() {
         return "StudentLogin";
       case "/StudentSearch":
         return "StudentSearch";
-      case "/Mission":
-        return "Mission";
-      case "/Vision":
-        return "Vision";
+      // case "/Mission":
+      //   return "Mission";
+      // case "/Vision":
+      //   return "Vision";
       default:
         return "";
     }
@@ -75,6 +76,7 @@ function Header() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  const navigate = useNavigate();
 
   return (
     <header className="">
@@ -82,8 +84,8 @@ function Header() {
         {/* Navigation Bar */}
         <div className={`w-full bg-[#003F7D] p-2 flex justify-end`}>
           <div className="flex gap-3">
-            <OutlineButton text1={"Student Login"} />
-            <FillButton text2={"Frenchise Login"} />
+            <OutlineButton text1={"Student Login"} onClick={() => navigate("/StudentLogin")} />
+            <FillButton text2={"Frenchise Login"} onClick={() => navigate("/FrenchiseLogin")} />
           </div>
         </div>
 
@@ -111,7 +113,7 @@ function Header() {
 
           {/* Sliding Menu */}
           <div
-            className={`z-10 block w-full h-full -mt-2 p-6 bg-slate-400 md:hidden fixed transition-transform duration-300 ease-in-out ${
+            className={`z-10 block w-full h-full -mt-2 p-6 bg-[#003F7D] text-white md:hidden fixed transition-transform duration-300 ease-in-out ${
               isMenuOpen
                 ? "transform translate-x-[-13px]"
                 : "transform -translate-x-[-800px]"
@@ -127,7 +129,7 @@ function Header() {
                 <NavLink
                   to="/"
                   className={({ isActive }) =>
-                    isActive ? "text-blue-950 text-lg" : ""
+                    isActive ? "text-[#F98149] text-lg" : ""
                   }
                 >
                   Home
@@ -139,9 +141,9 @@ function Header() {
                 onClick={toggleMenu}
               >
                 <NavLink
-                  to="/About Us"
+                  to="/AboutUs"
                   className={({ isActive }) =>
-                    isActive ? "text-blue-950 text-lg" : ""
+                    isActive ? "text-[#F98149] text-lg" : ""
                   }
                 >
                   About Us
@@ -155,7 +157,7 @@ function Header() {
                 <NavLink
                   to="/StudentEnq"
                   className={({ isActive }) =>
-                    isActive ? "text-blue-950 text-lg" : ""
+                    isActive ? "text-[#F98149] text-lg" : ""
                   }
                 >
                   Student Enquiry
@@ -168,7 +170,7 @@ function Header() {
                 <NavLink
                   to="/StudentLogin"
                   className={({ isActive }) =>
-                    isActive ? "text-blue-950 text-lg" : ""
+                    isActive ? "text-[#F98149] text-lg" : ""
                   }
                 >
                   Student Login
@@ -181,7 +183,7 @@ function Header() {
                 <NavLink
                   to="/StudentSearch"
                   className={({ isActive }) =>
-                    isActive ? "text-blue-950 text-lg" : ""
+                    isActive ? "text-[#F98149] text-lg" : ""
                   }
                 >
                   Student Search
@@ -194,7 +196,7 @@ function Header() {
                 <NavLink
                   to="/FrenchiseReg"
                   className={({ isActive }) =>
-                    isActive ? "text-blue-950 text-lg" : ""
+                    isActive ? "text-[#F98149] text-lg" : ""
                   }
                 >
                   Frenchise Registeration
@@ -207,7 +209,7 @@ function Header() {
                 <NavLink
                   to="/FrenchiseLogin"
                   className={({ isActive }) =>
-                    isActive ? "text-blue-950 text-lg" : ""
+                    isActive ? "text-[#F98149] text-lg" : ""
                   }
                 >
                   Frenchise Login
@@ -221,7 +223,7 @@ function Header() {
                 <NavLink
                   to="/ContactUs"
                   className={({ isActive }) =>
-                    isActive ? "text-blue-950 text-lg" : ""
+                    isActive ? "text-[#F98149] text-lg" : ""
                   }
                 >
                   Contact Us
@@ -256,7 +258,7 @@ function Header() {
                 About Us
               </NavLink>
 
-              {/* Dropdown Container */}
+              {/* Dropdown Container
               <div className="text-[#8A948C] transition-all absolute right-0 hidden group-hover:block bg-[#FDFDFD] shadow-lg rounded-lg w-full mt-1">
                 <NavLink
                   to="/Mission"
@@ -278,7 +280,7 @@ function Header() {
                 >
                   Vision
                 </NavLink>
-              </div>
+              </div> */}
             </div>
 
             <div className=" transition-all pt-1 pl-2 pr-2 pb-1">
@@ -315,7 +317,7 @@ function Header() {
                       : "block px-4 py-2 hover:bg-orange-500 hover:text-white"
                   }
                 >
-                  Frenchise Registration
+                  Become A Frenchise
                 </NavLink>
                 <NavLink
                   to="/FrenchiseLogin"

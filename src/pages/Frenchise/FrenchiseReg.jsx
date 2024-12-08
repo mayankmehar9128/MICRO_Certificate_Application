@@ -1,13 +1,17 @@
 import { useState } from 'react'
+import { assets } from '../../assets/asset'
+import FrenchiseApplyForm from '../../widgets/FrenchiseApplyForm'
 
 function FrenchiseReg() {
 
   return (
-    <main className="p-5 m-auto max-w-7xl">
-      <h1 className='text-7xl font-light underline text-slate-400'>FrenchiseReg</h1>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <main className="m-auto max-w-7xl">
+      <div className=" bg-contain bg-no-repeat flex flex-col items-center align-middle bg-[url('./assets/aboutimages/CurveRect.png')]">
+        <div className='text-center font-bold text-[#FDFDFD] text-3xl p-2 pt-7'><p>Franchise Application Form</p></div>
+        <div className='p-9'>
+          <FrenchiseApplyForm />
+        </div>
+      </div>
     </main>
   )
 }

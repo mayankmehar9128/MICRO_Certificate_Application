@@ -35,40 +35,40 @@ function Home() {
                 <p>Skill Development</p>
                 <p>Schemes For All</p>
               </div>
-              <div className="w-96 flex align-middle justify-between">
-                <div>
+              <div className="w-96 flex align-middle justify-between pt-3">
+                <div className="w-40 flex justify-center flex-col items-center align-middle">
                   <div className="flex ">
-                    <p className="font-bold text-sm pr-3">01</p>
+                    <p className="font-bold text-sm pr-3 text-[#003F7D]">01</p>
                     <br/>
                     <img src={assets.image3} width={50}/>
                   </div>
-                  <div className="p-2 pl-6"><p>sfdsfds</p></div>
+                  <div className="p-3 pl-6 text-center text-xs font-medium"><p>Colleges/Universities</p></div>
                   
                 </div>
-                <div>
+                <div className="w-40 flex justify-center flex-col items-center align-middle">
                   <div className="flex">
-                    <p className="font-bold text-sm pr-3">02</p>
+                    <p className="font-bold text-sm pr-3 text-[#003F7D]">02</p>
                     <br/>
                     <img src={assets.image4} width={50}/>
                   </div>
-                  <div className="p-2 pl-6"><p>sfdsfds</p></div>
+                  <div className="p-3 pl-6 text-center text-xs font-medium"><p>Individuals/Working Professionals</p></div>
                 </div>
               </div>
-              <div className="w-96 flex align-middle justify-between">
-                <div>
+              <div className="w-96 flex align-middle justify-between pt-9">
+                <div className="w-40 flex justify-center flex-col items-center align-middle">
                   <div className="flex">
-                    <p className="font-bold text-sm pr-3">03</p>
+                    <p className="font-bold text-sm pr-3 text-[#003F7D]">03</p>
                     <br/>
                     <img src={assets.image5} width={50}/>
                   </div>
-                  <div className="p-2 pl-6"><p>sfdsfds</p></div>
+                  <div className="p-3 pl-6 text-xs font-medium"><p>Startups</p></div>
                 </div>
-                <div>
+                <div className="w-40 flex justify-center flex-col items-center align-middle">
                   <div className="flex">
-                    <p className="font-bold text-sm pr-3">04</p>
+                    <p className="font-bold text-sm pr-3 text-[#003F7D]">04</p>
                     <img src={assets.image9} width={50}/>
                   </div>
-                  <div className="p-2 pl-6"><p>sfdsfds</p></div>
+                  <div className="p-3 pl-6 text-xs font-medium"><p>Corporates</p></div>
                 </div>
               </div>
             </div>
@@ -85,7 +85,7 @@ function Home() {
         <div className="flex align-middle justify-center gap-2 text-2xl font-bold">
           <p className="text-[#003F7D]">Popoular</p><p className="text-[#F98149]">Courses</p>
         </div>
-        <div className="flex flex-wrap align-middle items-center justify-center gap-20 w-auto mt-4">
+        <div className="flex flex-wrap align-middle items-center justify-center gap-24 w-auto mt-4">
          <CourseCard src={assets.image11} width={70} text1={"Angular JS"} text2={"A JavaScript-based open-source front-end web framework for developing single-page applications." }/>
          <CourseCard src={assets.image12} width={75} text1={"Python"} text2={"Python is an interpreted high-level general-purpose programming language." }/>
          <CourseCard src={assets.image13} width={105} text1={"React"} text2={"React is a free and open-source front-end JavaScript library for building user interfaces based on UI components." }/>
@@ -96,7 +96,7 @@ function Home() {
          <CourseCard src={assets.image13} width={105} text1={"React"} text2={"React is a free and open-source front-end JavaScript library for building user interfaces based on UI components." }/>
 
         </div>
-        <div className="mt-24 flex align-middle justify-center">
+        <div className="mt-28 flex align-middle justify-center">
           <div className="cursor-pointer p-2 rounded-lg text-center text-xs text-white bg-[#003F7D] w-32"><p>View All Courses</p></div>
         </div>
       </div>

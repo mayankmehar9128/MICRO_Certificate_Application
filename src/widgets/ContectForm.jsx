@@ -39,9 +39,9 @@ const ContectForm = () => {
 
   return (
      // bind formRef to our form element
-    <div className="w-full p-14 bg-[#FFFFFF] drop-shadow-xl rounded-xl">
+    <div className="w-[93vw] sm:w-[90vw] md:w-[70vw] lg:w-[60vw] p-4 sm:p-10 bg-[#FFFFFF] drop-shadow-xl rounded-xl">
         <form ref={formRef} onSubmit={sendFormData}>
-            <div className="grid grid-cols-2 gap-10">
+            <div className="grid grid-cols-2 gap-7">
                 <div className="flex flex-col">
                     <label htmlFor="nameInput" className="pb-2 text-[#003F7D]">Name *</label>
                     <FormTextField type={"text"} id={"nameInput"} name={"name"} placeholder={"your name"}/>
@@ -59,8 +59,8 @@ const ContectForm = () => {
                     {/* <input type="text" id="nameInput" name="name" /> */}
                 </div>
                 <div className="flex flex-col">
-                    <label htmlFor="issueInput" className="pb-2 text-[#003F7D]">Issue</label>
-                    <FormTextField type={"Issue"} id={"issueInput"} name={"issue"} placeholder={"course issue"}/>
+                    <label htmlFor="courseInput" className="pb-2 text-[#003F7D]">Course</label>
+                    <FormTextField type={"text"} id={"courseInput"} name={"course"} placeholder={"type course"}/>
                     {/* <input type="text" id="nameInput" name="name" /> */}
                 </div>
 

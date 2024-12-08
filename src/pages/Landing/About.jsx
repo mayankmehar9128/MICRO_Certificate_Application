@@ -30,7 +30,7 @@ function About() {
       {/* hero section end */}
 
       {/* hero section second start */}
-      <div className="mt-[42rem] lg:mt-28">
+      <div className="mt-[45rem] lg:mt-40">
         <div className="flex flex-wrap-reverse align-middle items-center justify-center gap-3 lg:gap-40 h-80">
           <div className="">
             <img src={assets.image24} width={320} />
