@@ -1,13 +1,17 @@
 import { useState } from 'react'
+import { assets } from '../../assets/asset'
+import StudentEngForm from '../../widgets/StudentEngForm'
 
 function StudentEnq() {
 
   return (
-    <main className="p-5 m-auto max-w-7xl">
-      <h1 className='text-7xl font-light underline text-slate-400'>StudentEnq</h1>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <main className="m-auto max-w-7xl">
+      <div className=" bg-contain bg-no-repeat flex flex-col items-center align-middle bg-[url('./assets/aboutimages/CurveRect.png')]">
+        <div className='text-center font-bold text-[#FDFDFD] text-3xl p-2 pt-7'><p>Share Details</p></div>
+        <div className='m-10'>
+          <StudentEngForm />
+        </div>
+      </div>
     </main>
   )
 }

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import HomeCard from "../../components/HomeCards";
+import HomeCard from "../../reUsableComponents/HomeCards";
 import { assets } from "../../assets/asset";
-import CourseCard from "../../components/CourseCard";
-import OurAchievementCard from "../../components/OurAchievementCard";
+import CourseCard from "../../reUsableComponents/CourseCard";
+import OurAchievementCard from "../../reUsableComponents/OurAchievementCard";
 
 function Home() {
   return (

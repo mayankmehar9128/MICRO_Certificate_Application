@@ -1,6 +1,6 @@
 import React, { useRef } from "react"
-import FormTextField from "../components/FormTextField";
-import FormTextArea from "../components/FormTextArea";
+import FormTextField from "../reUsableComponents/FormTextField";
+import FormTextArea from "../reUsableComponents/FormTextArea";
 
 const ContectForm = () => {
   // create a Ref to access our form element

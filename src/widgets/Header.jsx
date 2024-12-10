@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { assets } from "../assets/asset";
-import OutlineButton from "../components/OutlineButton";
-import FillButton from "../components/FillButton";
-import HerosecFillBtn from "../components/Herosecfillbtn";
+import OutlineButton from "../reUsableComponents/OutlineButton";
+import FillButton from "../reUsableComponents/FillButton";
+import HerosecFillBtn from "../reUsableComponents/Herosecfillbtn";
 import React from "react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { useNavigate } from "react-router-dom";
@@ -90,7 +90,7 @@ function Header() {
         </div>
 
         <div
-          className={`flex item-center justify-between w-full h-20 md:h-20 p-3 bg-[#FDFDFD] ${
+          className={`flex item-center justify-between w-full h-20 md:h-20 p-3 bg-blue-600 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 ${
             isScrolled ? "fixed top-0 z-50 animate-slidein" : ""
           }`}
         >
