@@ -28,6 +28,7 @@ function Header() {
       "/StudentEnq",
       "/StudentLogin",
       "/StudentSearch",
+      "/Admin",
       // "/Mission",
       // "/Vision"
     ];
@@ -90,7 +91,7 @@ function Header() {
         </div>
 
         <div
-          className={`flex item-center justify-between w-full h-20 md:h-20 p-3 bg-blue-600 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 ${
+          className={`flex item-center justify-between w-full h-20 md:h-20 p-3 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 ${
             isScrolled ? "fixed top-0 z-50 animate-slidein" : ""
           }`}
         >
@@ -232,7 +233,7 @@ function Header() {
             </div>
           </div>
 
-          <div className="text-[#8A948C] gap-1 hidden text-sm md:text-sm font-normal md:font-semibold md:flex">
+          <div className="text-[#59605b] gap-1 hidden text-sm md:text-sm font-normal md:font-semibold md:flex">
             {/* Large Screen NavLinks */}
             <div className=" pt-1 pl-2 pr-2 pb-1">
               <NavLink
@@ -454,7 +455,7 @@ function Header() {
               <HerosecFillBtn text3={"Software Testing"} />
             </div>
           </div>
-          <div className="basis-2/5 relative">
+          <div className="basis-2/5 relative -z-50">
             <div className="absolute">
               <DotLottieReact
                 src="https://lottie.host/59e21d7a-15c3-488a-833b-2d8a64a2b0d3/TsPMAHquJB.lottie"

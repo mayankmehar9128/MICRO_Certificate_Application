@@ -5,12 +5,3 @@ function FillButton({text2, onClick}) {
 }
 
 export default FillButton
-
-
-// import { Button } from "@/components/ui/button"
- 
-// export function FillButton() {
-//   return <Button>Button</Button>
-// }
-
-// export default FillButton
