@@ -14,6 +14,7 @@ import FrenchiseReg from './pages/Frenchise/FrenchiseReg';
 import FrenchiseLogin from './pages/Frenchise/FrenchiseLogin';
 import AdminLogin from './pages/Admin/AdminLogin';
 import AdminDeshbordLanding from './pages/Admin/AdminDeshbordLanding';
+import FrenchiseLanding from './pages/Frenchise/FrenchiseLanding';
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function AppLayout() {
   const location = useLocation();
 
   // List of routes where Header and Footer should not appear
-  const excludedRoutes = ["/AdminDashbord"];
+  const excludedRoutes = ["/AdminDashbord","/FrenchiseDashbord"];
 
   const showHeaderFooter = !excludedRoutes.includes(location.pathname);
 
@@ -47,6 +48,7 @@ function AppLayout() {
           <Route path="/FrenchiseLogin" element={<FrenchiseLogin />} />
           <Route path="/Admin" element={<AdminLogin />} />
           <Route path="/AdminDashbord" element={<AdminDeshbordLanding />} />
+          <Route path="/FrenchiseDashbord" element={<FrenchiseLanding />} />
         </Routes>
       </div>
       {showHeaderFooter && <Footer />}

@@ -3,6 +3,9 @@ import Sidebar, { SidebarItem } from "@/widgets/Sidebar";
 import { LayoutDashboard, Users2, Building2, BookDown, Wallet, UserRoundCog } from "lucide-react";
 import AddCenter from "@/widgets/AddCenterForm";
 import AddCourse from "@/widgets/AddCourse";
+import AdminAddedFrenchiseDetail from "./AdminAddedFrenchiseTable";
+import AdminStudentDetail from "./StudentDetails";
+import FrenchiseDetail from "./FrenchiseDetils";
 
 function AdminDeshbordLanding() {
   const [activeContent, setActiveContent] = useState("Dashboard"); // State for active content
@@ -53,12 +56,12 @@ function AdminDeshbordLanding() {
       </Sidebar>
 
       <main className="flex-1 p-4 bg-gray-100 overflow-auto">
-        <div className="w-full max-w-6xl">
+        <div className="w-full max-w-8xl">
           {/* Render content dynamically based on activeContent */}
-          {activeContent === "View Frenchise" && <p>View Frenchise Content</p>}
-          {activeContent === "View Student" && <p>View Student Content</p>}
+          {activeContent === "View Frenchise" && <div><AdminAddedFrenchiseDetail /></div>}
+          {activeContent === "View Student" && <div><AdminStudentDetail /></div>}
           {activeContent === "Add Center" && <div><AddCenter /></div>}
-          {activeContent === "View Center" && <p>View Center Content</p>}
+          {activeContent === "View Center" && <div><FrenchiseDetail /></div>}
           {activeContent === "Add Course" && <div><AddCourse /></div>}
           {activeContent === "View Course" && <p>View Course Content</p>}
           {activeContent === "View Transaction History" && (
@@ -72,6 +75,20 @@ function AdminDeshbordLanding() {
 }
 
 export default AdminDeshbordLanding;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // import { Routes, Route, useNavigate } from "react-router-dom";
 // import AddCenter from "@/widgets/AddCenterForm";
@@ -113,3 +130,34 @@ export default AdminDeshbordLanding;
 
 // export default AdminDeshbordLanding;
 
+
+
+
+
+
+
+
+
+
+
+// import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+// import { AppSidebar } from "@/components/app-sidebar";
+
+// export default function AdminDeshbordLanding({ children }) {
+//   return (
+//     <SidebarProvider>
+//       <div className="flex">
+//         {/* Sidebar */}
+//         <AppSidebar />
+//         {/* Main Content */}
+//         <main className="flex-1">
+//           <header className="flex items-center p-4 border-b">
+//             <SidebarTrigger className="mr-4" />
+//             <h1 className="text-lg font-semibold">Dashboard</h1>
+//           </header>
+//           <div className="p-4">{children}</div>
+//         </main>
+//       </div>
+//     </SidebarProvider>
+//   );
+// }

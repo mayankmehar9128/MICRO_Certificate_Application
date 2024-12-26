@@ -229,3 +229,32 @@ export function SidebarItem({ icon, text, submenus, active, onClick }) {
 //     </li>
 //   );
 // }
+
+
+
+
+
+
+
+
+// import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+// import { AppSidebar } from "@/components/app-sidebar";
+
+// export default function AdminDeshbordLanding({ children }) {
+//   return (
+//     <SidebarProvider>
+//       <div className="flex">
+//         {/* Sidebar */}
+//         <AppSidebar />
+//         {/* Main Content */}
+//         <main className="flex-1">
+//           <header className="flex items-center p-4 border-b">
+//             <SidebarTrigger className="mr-4" />
+//             <h1 className="text-lg font-semibold">Dashboard</h1>
+//           </header>
+//           <div className="p-4">{children}</div>
+//         </main>
+//       </div>
+//     </SidebarProvider>
+//   );
+// }
