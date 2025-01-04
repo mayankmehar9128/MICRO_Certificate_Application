@@ -28,11 +28,11 @@ export default {
   			slidein: {
   				from: {
   					opacity: '0',
-  					transform: 'translateX(-20px)'
+  					transform: 'translateY(-20px)'
   				},
   				to: {
   					opacity: '1',
-  					transform: 'translateX(0)'
+  					transform: 'translateY(0)'
   				}
   			}
   		},

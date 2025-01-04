@@ -4,7 +4,7 @@ import { assets } from "../assets/asset";
 
 function Footer() {
   return (
-    <footer>
+    <footer className="">
       <div className="p-2 h-auto bg-cover bg-[url('./assets/footerimage/Rectanglefooter.png')]">
         <div className="text-white text-sm m-auto max-w-7xl mt-2 flex flex-wrap gap-10 pl-2 justify-between">
           <div className="flex-col align-middle justify-center">
@@ -18,7 +18,7 @@ function Footer() {
                 trainings.
               </p>
             </div>
-            <div className="w-96 h-auto mt-9">
+            <div className="w-72 h-auto mt-9">
               <p className="font-Poppins font-semibold text-3xl">
                 Subscribe Our Newsletter
               </p>

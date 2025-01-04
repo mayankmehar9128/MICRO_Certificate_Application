@@ -91,22 +91,24 @@ function Header() {
         </div>
 
         <div
-          className={`flex item-center justify-between w-full h-20 md:h-20 p-3 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 ${
+          className={`flex items-center z-50 justify-between w-full h-20 md:h-20 p-3 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 ${
             isScrolled ? "fixed top-0 z-50 animate-slidein" : ""
           }`}
         >
-          {/* Logo and Menu */}
-          <div className=" -mt-2">
-            <img src={assets.image6} width={70} />
+          {/* Logo */}
+          <div className="-mt-2">
+            <img src={assets.image6} width={70} alt="Logo" />
           </div>
+
+          {/* Hamburger Menu */}
           <div
-            className="block text-xl md:hidden cursor-pointer pr-4"
+            className="block text-xl md:hidden cursor-pointer"
             onClick={toggleMenu}
           >
             <i
               className={`fa-solid ${
                 isMenuOpen
-                  ? "fa-xmark relative z-20 py-1 text-3xl font-bold"
+                  ? ""
                   : "fa-bars text-3xl font-bold"
               }`}
             ></i>
@@ -114,15 +116,20 @@ function Header() {
 
           {/* Sliding Menu */}
           <div
-            className={`z-10 block w-full h-full -mt-2 p-6 bg-[#003F7D] text-white md:hidden fixed transition-transform duration-300 ease-in-out ${
-              isMenuOpen
-                ? "transform translate-x-[-13px]"
-                : "transform -translate-x-[-800px]"
+            className={`z-50 w-full h-screen fixed top-0 left-0 bg-[#003F7D] text-white md:hidden transition-transform duration-300 ease-in-out ${
+              isMenuOpen ? "transform translate-x-0" : "transform -translate-x-full"
             }`}
           >
+            {/* Close Menu */}
+            <div
+              className="absolute top-5 right-5 text-2xl cursor-pointer"
+              onClick={toggleMenu}
+            >
+              <i className="fa-solid fa-xmark text-3xl"></i>
+            </div>
+
             {/* Menu Items */}
             <div className="flex flex-col gap-10 items-center justify-center h-full text-white text-base font-bold">
-              {/* NavLink items here */}
               <div
                 className="hover:text-blue-400 transition-all"
                 onClick={toggleMenu}
@@ -200,7 +207,7 @@ function Header() {
                     isActive ? "text-[#F98149] text-lg" : ""
                   }
                 >
-                  Frenchise Registeration
+                  Franchise Registration
                 </NavLink>
               </div>
               <div
@@ -213,7 +220,7 @@ function Header() {
                     isActive ? "text-[#F98149] text-lg" : ""
                   }
                 >
-                  Frenchise Login
+                  Franchise Login
                 </NavLink>
               </div>
 
@@ -422,9 +429,9 @@ function Header() {
       {/* bg-[url('./assets/headerimage/herosec.png')] */}
       {!hideHeroSection() && (
         <div className="flex align-middle justify-center gap-10 w-auto h-auto bg-cover animate-slidein">
-          <div className="px-5 mt-7 p-5 m-auto max-w-7xl">
+          <div className="mt-7 flex-1 p-5 m-auto max-w-7xl ml-6">
             <div className="">
-              <div className="w-96">
+              <div className="w-full">
                 <p className=" font-bold text-3xl md:text-5xl text-[#003F7D] tracking-wide">
                   Skill your wayup to success with us
                 </p>

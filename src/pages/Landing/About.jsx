@@ -5,7 +5,7 @@ function About() {
   return (
     <main className="p-1 m-auto max-w-7xl">
       {/* hero section start */}
-      <div className="w-full h-[35vh] lg:h-screen bg-contain bg-no-repeat bg-[url('./assets/aboutimages/aboutpageimage.png')]">
+      <div className="w-full h-[35vh] lg:h-auto bg-contain bg-no-repeat bg-[url('./assets/aboutimages/aboutpageimage.png')]">
         <div className="flex flex-wrap align-middle items-center justify-center sm:gap-16">
           <div className="w-72 sm:w-72 lg:w-96 sm:mt-10">
             <p className=" flex gap-3 text-base font-semibold text-orange-500 p-3">
@@ -22,7 +22,7 @@ function About() {
               </p>
             </div>
           </div>
-          <div className="pt-10 w-72 sm:w-80 lg:w-[500px] relative bottom-10 sm:top-14">
+          <div className="pt-10 w-72 sm:w-80 lg:w-[500px] lg:relative bottom-10 sm:top-14">
             <img src={assets.image23} width={530} />
           </div>
         </div>
@@ -30,7 +30,7 @@ function About() {
       {/* hero section end */}
 
       {/* hero section second start */}
-      <div className="mt-[45rem] lg:mt-40">
+      <div className="mt-[45rem] md:mt-44 lg:mt-44">
         <div className="flex flex-wrap-reverse align-middle items-center justify-center gap-3 lg:gap-40 h-80">
           <div className="">
             <img src={assets.image24} width={320} />

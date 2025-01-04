@@ -5,7 +5,7 @@ import { assets } from '../../assets/asset'
 function ContectUs() {
 
   return (
-    <main className="m-auto max-w-7xl">
+    <main className="m-auto max-w-7xl relative -z-10">
       <div className=" bg-contain bg-no-repeat flex flex-col items-center align-middle bg-[url('./assets/aboutimages/CurveRect.png')]">
         <div className='text-center font-bold text-[#FDFDFD] text-3xl p-2 pt-7'><p>Contact Our Team</p></div>
         <div className='mt-10'>

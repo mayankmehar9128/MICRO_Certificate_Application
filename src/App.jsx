@@ -35,7 +35,7 @@ function AppLayout() {
   return (
     <>
       {showHeaderFooter && <Header />}
-      <div className="">
+      <div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/AboutUs" element={<About />} />

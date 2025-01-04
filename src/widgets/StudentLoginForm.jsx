@@ -1,5 +1,6 @@
 import React, { useRef } from "react"
 import LoginTextField from "../reUsableComponents/LoginTextField";
+import { useNavigate } from "react-router-dom";
 
 const StudentLoginForm = () => {
   // create a Ref to access our form element
@@ -36,11 +37,13 @@ const StudentLoginForm = () => {
     });
   }
 
+  const navigate = useNavigate();
+
   return (
      // bind formRef to our form element
     <div className="w-80 sm:w-96 h-96 p-6 bg-[#FFFFFF] shadow-2xl rounded-xl flex flex-col items-center">
       <div className="p-1 w-full text-center">
-        <div className="text-xl text-[#003F7D] font-semibold"><p>Log In</p></div>
+        <div className="text-xl text-[#003F7D] font-semibold"><p>Student Log In</p></div>
       </div>
       <br />
         <form ref={formRef} onSubmit={sendFormData}>
@@ -59,7 +62,7 @@ const StudentLoginForm = () => {
 
             <div className="mt-20 w-full flex justify-center">
               <div>
-                <button type="submit" className="bg-[#003F7D] p-1 pl-12 pr-12 text-white rounded-md">Login</button>
+                <button type="button" className="bg-[#003F7D] p-1 pl-12 pr-12 text-white rounded-md" onClick={() => navigate("/FrenchiseDashbord")}>Login</button>
               </div>
             </div>
         </form>

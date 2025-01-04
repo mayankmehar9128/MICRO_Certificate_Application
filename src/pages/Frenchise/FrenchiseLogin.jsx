@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { assets } from '../../assets/asset'
-import FrenchiseLoginForm from '../../widgets/StudentLoginForm'
+import FrenchiseLoginForm from '@/widgets/FrenchLoginForm'
+
 
 function FrenchiseLogin() {
 

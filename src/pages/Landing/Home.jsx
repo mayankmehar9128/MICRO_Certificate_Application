@@ -6,10 +6,10 @@ import OurAchievementCard from "../../reUsableComponents/OurAchievementCard";
 
 function Home() {
   return (
-    <main className="p-5 m-auto max-w-7xl mt-16 animate-slidein">
+    <main className="m-auto max-w-7xl mt-16 animate-slidein">
       <div>
         <div className="flex flex-wrap align-middle justify-center gap-10 sm:gap-24">
-          <div className="w-96 text-5xl font-bold animate-slidein">
+          <div className="w-96 text-4xl sm:text-5xl font-bold animate-slidein p-2">
             <p className="text-[#003F7D]">Best AI </p>
             <p className="text-[#003F7D]">Based Online &</p>
             <p className="text-[#FF8B36]">Offline Learning Platform</p>
@@ -28,14 +28,14 @@ function Home() {
         <div className="mt-10">
           <div className="flex flex-wrap align-middle justify-center gap-9 lg:gap-32">
             <div>
-              <div className="text-5xl font-bold">
+              <div className="text-5xl font-bold pl-5">
                 <div className="pl-3 text-xl">
                   <p>WHO CAN JOIN</p>
                 </div>
                 <p>Skill Development</p>
                 <p>Schemes For All</p>
               </div>
-              <div className="w-96 flex align-middle justify-between pt-3">
+              <div className="w-80 flex align-middle justify-between pt-3">
                 <div className="w-40 flex justify-center flex-col items-center align-middle">
                   <div className="flex ">
                     <p className="font-bold text-sm pr-3 text-[#003F7D]">01</p>
@@ -54,7 +54,7 @@ function Home() {
                   <div className="p-3 pl-6 text-center text-xs font-medium"><p>Individuals/Working Professionals</p></div>
                 </div>
               </div>
-              <div className="w-96 flex align-middle justify-between pt-9">
+              <div className="w-80 flex align-middle justify-between pt-9">
                 <div className="w-40 flex justify-center flex-col items-center align-middle">
                   <div className="flex">
                     <p className="font-bold text-sm pr-3 text-[#003F7D]">03</p>

@@ -55,7 +55,7 @@ function AdminDeshbordLanding() {
         />
       </Sidebar>
 
-      <main className="flex-1 p-4 bg-gray-100 overflow-auto">
+      <main className="flex-1 w-full p-4 bg-gray-100 overflow-auto">
         <div className="w-full max-w-8xl">
           {/* Render content dynamically based on activeContent */}
           {activeContent === "View Frenchise" && <div><AdminAddedFrenchiseDetail /></div>}

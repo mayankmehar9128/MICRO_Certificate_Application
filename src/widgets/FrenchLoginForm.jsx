@@ -40,7 +40,7 @@ const FrenchiseLoginForm = () => {
      // bind formRef to our form element
     <div className="w-80 sm:w-96 h-96 p-6 bg-[#FFFFFF] shadow-2xl rounded-xl flex flex-col items-center">
       <div className="p-1 w-full text-center">
-        <div className="text-2xl text-[#003F7D] font-semibold"><p>Center Log In</p></div>
+        <div className="text-xl text-[#003F7D] font-semibold"><p>Center Log In</p></div>
       </div>
       <br />
         <form ref={frenchiseLoginformRef} onSubmit={sendFormData}>
