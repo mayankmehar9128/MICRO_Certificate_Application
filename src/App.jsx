@@ -1,6 +1,4 @@
-import { useState } from 'react'
-import './App.css'
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from './widgets/Header';
 import Footer from './widgets/Footer';
 import Home from './pages/Landing/Home';
@@ -13,28 +11,30 @@ import StudentSearch from './pages/Student/StudentSearch';
 import FrenchiseReg from './pages/Frenchise/FrenchiseReg';
 import FrenchiseLogin from './pages/Frenchise/FrenchiseLogin';
 import AdminLogin from './pages/Admin/AdminLogin';
-import AdminDeshbordLanding from './pages/Admin/AdminDeshbordLanding';
-import FrenchiseLanding from './pages/Frenchise/FrenchiseLanding';
+import AdminDashboard from "./pages/Admin/AdminDeshbordLanding";
+import FrenchiseDashboard from "./pages/Frenchise/FrenchiseLanding";
 
 function App() {
   return (
     <Router>
-      <AppLayout />
+      <Routes>
+        {/* Public Website Routes */}
+        <Route path="/*" element={<WebsiteLayout />} />
+
+        {/* Admin Dashboard Routes */}
+        <Route path="/admin/*" element={<AdminDashboard />} />
+
+        {/* Frenchise Dashboard Routes */}
+        <Route path="/frenchise/*" element={<FrenchiseDashboard />} />
+      </Routes>
     </Router>
   );
 }
 
-function AppLayout() {
-  const location = useLocation();
-
-  // List of routes where Header and Footer should not appear
-  const excludedRoutes = ["/AdminDashbord","/FrenchiseDashbord"];
-
-  const showHeaderFooter = !excludedRoutes.includes(location.pathname);
-
+function WebsiteLayout() {
   return (
     <>
-      {showHeaderFooter && <Header />}
+      <Header />
       <div>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -46,12 +46,10 @@ function AppLayout() {
           <Route path="/StudentSearch" element={<StudentSearch />} />
           <Route path="/FrenchiseReg" element={<FrenchiseReg />} />
           <Route path="/FrenchiseLogin" element={<FrenchiseLogin />} />
-          <Route path="/Admin" element={<AdminLogin />} />
-          <Route path="/AdminDashbord" element={<AdminDeshbordLanding />} />
-          <Route path="/FrenchiseDashbord" element={<FrenchiseLanding />} />
+          <Route path="/AdminLogin" element={<AdminLogin />} />
         </Routes>
       </div>
-      {showHeaderFooter && <Footer />}
+      <Footer />
     </>
   );
 }

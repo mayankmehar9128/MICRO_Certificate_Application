@@ -108,7 +108,7 @@ const AdminLoginForm = () => {
       toast.success("Login successful!");
       setUserName(""); // Clear username field
       setPassword(""); // Clear password field
-      navigate("/AdminDashbord");
+      navigate("/admin");
     } else {
       toast.error("Invalid username or password!");
     }

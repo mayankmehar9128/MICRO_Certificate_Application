@@ -28,9 +28,7 @@ function Header() {
       "/StudentEnq",
       "/StudentLogin",
       "/StudentSearch",
-      "/Admin",
-      // "/Mission",
-      // "/Vision"
+      "/AdminLogin",
     ];
     return hiddenRoutes.includes(location.pathname);
   };
@@ -52,10 +50,6 @@ function Header() {
         return "StudentLogin";
       case "/StudentSearch":
         return "StudentSearch";
-      // case "/Mission":
-      //   return "Mission";
-      // case "/Vision":
-      //   return "Vision";
       default:
         return "";
     }
@@ -428,8 +422,8 @@ function Header() {
       {/* Conditionally render the Hero section */}
       {/* bg-[url('./assets/headerimage/herosec.png')] */}
       {!hideHeroSection() && (
-        <div className="flex align-middle justify-center gap-10 w-auto h-auto bg-cover animate-slidein">
-          <div className="mt-7 flex-1 p-5 m-auto max-w-7xl ml-6">
+        <div className="m-auto max-w-7xl flex align-middle justify-center gap-10 w-auto h-auto bg-cover animate-slidein">
+          <div className="mt-7 flex-1 p-5 ml-6">
             <div className="">
               <div className="w-full">
                 <p className=" font-bold text-3xl md:text-5xl text-[#003F7D] tracking-wide">
@@ -463,13 +457,13 @@ function Header() {
             </div>
           </div>
           <div className="basis-2/5 relative -z-50">
-            <div className="absolute">
+            <div className="absolute hidden sm:block">
               <DotLottieReact
                 src="https://lottie.host/59e21d7a-15c3-488a-833b-2d8a64a2b0d3/TsPMAHquJB.lottie"
                 loop
                 autoplay
               />
-              <div className="absolute top-20"><img src={assets.image8} className="w-[80%]" /></div>
+              <div className="absolute top-20 hidden sm:block"><img src={assets.image8} className="w-[93%]" /></div>
               
             </div>
             

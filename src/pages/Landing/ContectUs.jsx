@@ -12,7 +12,7 @@ function ContectUs() {
           <ContectForm />
         </div>
         <div className='w-full flex justify-center items-center p-10 lg:p-28'>
-          <div className='w-auto flex flex-wrap align-middle items-center justify-between'>
+          <div className='w-auto gap-9 flex flex-wrap align-middle items-center justify-between'>
             <div className='w-auto sm:w-64 text-center'>
               <div className='w-auto sm:w-64 flex justify-center'><img src={assets.image27} width={50}/></div>
               <div className='text-lg text-[#F98149] font-semibold p-2'><p>Email us</p></div>

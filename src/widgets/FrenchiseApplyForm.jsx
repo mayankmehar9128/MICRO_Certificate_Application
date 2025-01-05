@@ -70,7 +70,7 @@ const FrenchiseApplyForm = () => {
 
   return (
      // bind formRef to our form element
-    <div className="relative w-[80vw] sm:w-[90vw] md:w-[70vw] lg:w-[74vw] z-0 p-12 bg-[#FFFFFF] drop-shadow-xl rounded-xl">
+    <div className="m-auto max-w-7xl relative w-[80vw] sm:w-[90vw] md:w-[70vw] lg:w-[74vw] z-0 p-12 bg-[#FFFFFF] drop-shadow-xl rounded-xl">
       <div className="p-1">
         <div className="text-2xl"><p>Apply Now</p></div>
       </div>

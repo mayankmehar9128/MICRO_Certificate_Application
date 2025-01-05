@@ -6,9 +6,9 @@ import OurAchievementCard from "../../reUsableComponents/OurAchievementCard";
 
 function Home() {
   return (
-    <main className="m-auto max-w-7xl mt-16 animate-slidein">
+    <main className="m-auto max-w-7xl mt-16 md:mt-48 animate-slidein">
       <div>
-        <div className="flex flex-wrap align-middle justify-center gap-10 sm:gap-24">
+        <div className="flex flex-wrap align-middle justify-center gap-6 lg:gap-10 sm:gap-24">
           <div className="w-96 text-4xl sm:text-5xl font-bold animate-slidein p-2">
             <p className="text-[#003F7D]">Best AI </p>
             <p className="text-[#003F7D]">Based Online &</p>

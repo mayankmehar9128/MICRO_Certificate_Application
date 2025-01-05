@@ -39,7 +39,7 @@ const StudentEngForm = () => {
 
   return (
      // bind formRef to our form element
-    <div className="relative w-[93vw] sm:w-[90vw] md:w-[70vw] lg:w-[60vw] p-4 sm:p-10 bg-[#FFFFFF] drop-shadow-xl rounded-xl">
+    <div className="m-auto max-w-7xl relative w-[93vw] sm:w-[90vw] md:w-[70vw] lg:w-[60vw] p-4 sm:p-10 bg-[#FFFFFF] drop-shadow-xl rounded-xl">
         <form ref={formRef} onSubmit={sendFormData}>
             <div className="grid grid-cols-2 gap-7">
                 <div className="flex flex-col">
