@@ -4,7 +4,7 @@ const registerValidation = (req, res, next) => {
     const schema = Joi.object({
         centername: Joi.string().min(3).max(100).required(),
         email: Joi.string().email().required(), // Fixed `email` validation
-        contectno: Joi.string().min(10).required(),
+        contectno: Joi.string().min(10).max(15).required(),
         centerowner: Joi.string().min(3).max(100).required(),
         workexp: Joi.string().min(3).max(100).required(),
         areaofinterest: Joi.string().min(3).max(100).required(),
@@ -25,7 +25,7 @@ const registerValidation = (req, res, next) => {
 // Validation middleware for franchise approval registration
 const approvedValidation = (req, res, next) => {
     const schema = Joi.object({
-        centercode: Joi.string().min(3).max(100).required(),
+        centercode: Joi.string().trim().min(3).max(100).required(),
         centername: Joi.string().min(3).max(100).required(),
         email: Joi.string().email().required(),
         contectno: Joi.string().min(10).max(15).required(),

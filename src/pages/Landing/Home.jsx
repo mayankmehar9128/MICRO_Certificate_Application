@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import HomeCard from "../../reUsableComponents/HomeCards";
 import { assets } from "../../assets/asset";
 import CourseCard from "../../reUsableComponents/CourseCard";
 import OurAchievementCard from "../../reUsableComponents/OurAchievementCard";
+import { MicroContext } from "@/context";
 
 function Home() {
   return (

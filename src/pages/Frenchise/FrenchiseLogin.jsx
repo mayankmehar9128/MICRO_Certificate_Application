@@ -1,6 +1,6 @@
-import { useState } from 'react'
 import { assets } from '../../assets/asset'
 import FrenchiseLoginForm from '@/widgets/FrenchLoginForm'
+import { ToastContainer } from "react-toastify";
 
 
 function FrenchiseLogin() {
@@ -10,6 +10,7 @@ function FrenchiseLogin() {
       <div className='flex align-middle items-center justify-center gap-28'>
         <div className=''>
           <FrenchiseLoginForm />
+          <ToastContainer />
         </div>
         <div className='hidden sm:block'>
           <img src={assets.image29} width={500}/>

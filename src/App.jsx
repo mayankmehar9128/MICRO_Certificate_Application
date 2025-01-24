@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Header from './widgets/Header';
 import Footer from './widgets/Footer';
 import Home from './pages/Landing/Home';
@@ -13,21 +13,35 @@ import FrenchiseLogin from './pages/Frenchise/FrenchiseLogin';
 import AdminLogin from './pages/Admin/AdminLogin';
 import AdminDashboard from "./pages/Admin/AdminDeshbordLanding";
 import FrenchiseDashboard from "./pages/Frenchise/FrenchiseLanding";
+import { useState } from "react";
+import RefreshHandler from "./widgets/RefreshHandler";
+import { MicroProvider } from "./context";
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const PrivateRoute = ({ element }) => {
+    return isAuthenticated ? element : <Navigate to= "/FrenchiseLogin" />
+  }
   return (
-    <Router>
-      <Routes>
-        {/* Public Website Routes */}
-        <Route path="/*" element={<WebsiteLayout />} />
+    <div>
+    <MicroProvider>
+      <Router>
+        <RefreshHandler setIsAuthanticated={setIsAuthenticated} />
+          <Routes>
+            {/* Public Website Routes */}
+            <Route path="/*" element={<WebsiteLayout />} />
 
-        {/* Admin Dashboard Routes */}
-        <Route path="/admin/*" element={<AdminDashboard />} />
+            {/* Admin Dashboard Routes */}
+            <Route path="/admin/*" element={<PrivateRoute element={<AdminDashboard />} />} />
 
-        {/* Frenchise Dashboard Routes */}
-        <Route path="/frenchise/*" element={<FrenchiseDashboard />} />
-      </Routes>
-    </Router>
+            {/* Frenchise Dashboard Routes */}
+            <Route path="/frenchise/*" element={<PrivateRoute element={<FrenchiseDashboard />} />} />
+          </Routes>
+      </Router>
+    </MicroProvider>
+    </div>
+    
   );
 }
 
@@ -37,7 +51,8 @@ function WebsiteLayout() {
       <Header />
       <div>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Navigate to="/home" />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/AboutUs" element={<About />} />
           <Route path="/ContactUs" element={<ContectUs />} />
           <Route path="/course" element={<Course />} />

@@ -1,76 +1,122 @@
 import React, { useRef, useState } from "react"
 import FormTextField from "../reUsableComponents/FormTextField";
 import FormTextArea from "../reUsableComponents/FormTextArea";
+import { handleError, handleSuccess } from "@/Util";
+import { useNavigate } from "react-router-dom";
 
 const FrenchiseApplyForm = () => {
 
-  const [User, setUser] = useState({
-    center: "",
+  const [applyInfo, setApplyInfo] = useState({
+    centername: "",
     centerowner: "",
     email: "",
-    contact: "",
-    workexperience: "",
-    areainterest: "",
+    contectno: "",
+    workexp: "",
+    areaofinterest: "",
     state:"",
     city: "",
     pincode: "",
     address: ""
   })
 
-  const handleInput = (e) => {
-    console.log(e);
-    let name = e.target.name;
-    let value = e.target.value;
+  const navigate = useNavigate();
 
-
-    setUser({
-      ...User,
-      [name]: value
-    })
-
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setApplyInfo((prev) => ({ ...prev, [name]: value }));
   };
 
-  
+  const validateInputs = () => {
+    const { email, contectno, pincode } = applyInfo;
 
-  
-
-  // create a Ref to access our form element
-  const formRef = useRef(null)
-
-  const sendFormData = async (event) => {
-    // this will prevent your form to redirect to another page.
-    event.preventDefault();
-
-    if(!formRef.current){
-      console.log('something wrong with form ref')
-      return
+    // Email Validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      handleError("Invalid email format");
+      return false;
     }
 
-    // get our form data
-    const formData = new FormData(formRef.current)
+    // Contact Number Validation
+    if (contectno.length !== 10 || isNaN(contectno)) {
+      handleError("Invalid contact number. It should be 10 digits.");
+      return false;
+    }
 
-    // add some additional data if you want
-    // formData.append('language', window.navigator.language)
+    // Pincode Validation
+    if (pincode.length !== 6 || isNaN(pincode)) {
+      handleError("Invalid pincode. It should be 6 digits.");
+      return false;
+    }
 
-    fetch('https://formcarry.com/s/{Your-Unique-Endpoint}', {
-      method: 'POST',
-      body: formData,
-      headers: {
-				// you don't have to set Content-Type
-				// otherwise it won't work due to boundary!
-        Accept: 'application/json'
-      }
-    })
-    // convert response to json
-    .then(r => r.json())
-    .then(res => {
-      console.log(res);
-    });
-  }
+    return true;
+  };
+
+    const handleApply = async (e) => {
+        e.preventDefault();
+
+        // Validation
+        if (!validateInputs()) return;
+
+        const {
+        centername,
+        centerowner,
+        email,
+        contectno,
+        workexp,
+        areaofinterest,
+        state,
+        city,
+        pincode,
+        address,
+        } = applyInfo;
+
+        if (
+        !centername||
+        !centerowner ||
+        !email ||
+        !contectno ||
+        !workexp ||
+        !areaofinterest ||
+        !state ||
+        !city ||
+        !address ||
+        !pincode
+        ) {
+        return handleError("All fields are required");
+        }
+
+        try {
+        const url = "http://localhost:8080/auth/register";
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify(applyInfo),
+        });
+
+        const result = await response.json();
+        const { success, message, error } = result;
+
+        if (success) {
+            handleSuccess(message);
+            setTimeout(() => {
+            navigate("/FrenchiseLogin");
+            }, 1000);
+        } else if (error) {
+            const details = error?.[0]?.message || "An error occurred";
+            handleError(details);
+        }else if(message) {
+            handleError(message);
+        }
+        } catch (err) {
+        handleError(err.message);
+        }
+    };
 
   return (
      // bind formRef to our form element
-    <div className="m-auto max-w-7xl relative w-[80vw] sm:w-[90vw] md:w-[70vw] lg:w-[74vw] z-0 p-12 bg-[#FFFFFF] drop-shadow-xl rounded-xl">
+    <div className="m-auto max-w-7xl w-[80vw] sm:w-[90vw] md:w-[70vw] lg:w-[74vw] z-0 p-12 bg-[#FFFFFF] drop-shadow-xl rounded-xl">
       <div className="p-1">
         <div className="text-2xl"><p>Apply Now</p></div>
       </div>
@@ -78,52 +124,52 @@ const FrenchiseApplyForm = () => {
       <hr />
       <br />
       {/* ref={formRef} onSubmit={sendFormData} */}
-        <form  ref={formRef} onSubmit={sendFormData}>
+        <form onSubmit={handleApply}>
             <div className="grid grid-cols-1 sm:grid-col-2 lg:grid-cols-3 gap-7">
                 <div className="flex flex-col">
                     <label htmlFor="centerInput" className="pb-2 text-[#003F7D]">Name Of Center *</label>
-                    <FormTextField type={"text"} id={"centerInput"} name={"center"} value={User.center_name} onChange={handleInput} placeholder={"Enter Center name"}/>
+                    <FormTextField type={"text"} id={"centerInput"} name={"centername"} value={applyInfo.centername} autofocus={"autofocus"} onChange={handleChange} placeholder={"Enter Center name"}/>
                     {/* <input type="text" id="nameInput" name="name" /> */}
                 </div>
                 <div className="flex flex-col">
                     <label htmlFor="centerOwnerInput" className="pb-2 text-[#003F7D]">Name Of Center Owner *</label>
-                    <FormTextField type={"text"} id={"centerOwnerInput"} name={"centerowner"} value={User.center_owner} onChange={handleInput} placeholder={"Enter Center Owner"}/>
+                    <FormTextField type={"text"} id={"centerOwnerInput"} name={"centerowner"} value={applyInfo.centerowner} onChange={handleChange} placeholder={"Enter Center Owner"}/>
                     {/* <input type="text" id="nameInput" name="name" /> */}
                 </div>
 
                 <div className="flex flex-col">
                     <label htmlFor="emailInput" className="pb-2 text-[#003F7D]">Email *</label>
-                    <FormTextField type={"email"} id={"emailInput"} name={"email"} value={User.email} onChange={handleInput} placeholder={"you@example.com"}/>
+                    <FormTextField type={"email"} id={"emailInput"} name={"email"} value={applyInfo.email} onChange={handleChange} placeholder={"you@example.com"}/>
                     {/* <input type="text" id="nameInput" name="name" /> */}
                 </div>
                 <div className="flex flex-col">
                     <label htmlFor="contactInput" className="pb-2 text-[#003F7D]">Contact No. *</label>
-                    <FormTextField type={"phone"} id={"contactInput"} name={"contact"} value={User.contact_no} onChange={handleInput} placeholder={"Enter Your Contact Number"}/>
+                    <FormTextField type={"phone"} id={"contactInput"} name={"contectno"} value={applyInfo.contectno} onChange={handleChange} placeholder={"Enter Your Contact Number"}/>
                     {/* <input type="text" id="nameInput" name="name" /> */}
                 </div>
                 <div className="flex flex-col">
                     <label htmlFor="workexperienceInput" className="pb-2 text-[#003F7D]">Work Experience *</label>
-                    <FormTextField type={"text"} id={"workexperienceInput"} name={"workexperience"} value={User.work_experience} onChange={handleInput} placeholder={"3 years"}/>
+                    <FormTextField type={"text"} id={"workexperienceInput"} name={"workexp"} value={applyInfo.workexp} onChange={handleChange} placeholder={"3 years"}/>
                     {/* <input type="text" id="nameInput" name="name" /> */}
                 </div>
                 <div className="flex flex-col">
                     <label htmlFor="areainterestInput" className="pb-2 text-[#003F7D]">Area Of Interest *.</label>
-                    <FormTextField type={"text"} id={"areainterestInput"} name={"areainterest"} value={User.area_of_interest} onChange={handleInput} placeholder={"Technology"}/>
+                    <FormTextField type={"text"} id={"areainterestInput"} name={"areaofinterest"} value={applyInfo.areaofinterest} onChange={handleChange} placeholder={"Technology"}/>
                     {/* <input type="text" id="nameInput" name="name" /> */}
                 </div>
                 <div className="flex flex-col">
                     <label htmlFor="stateInput" className="pb-2 text-[#003F7D]">State *</label>
-                    <FormTextField type={"text"} id={"stateInput"} name={"state"} value={User.state} onChange={handleInput} placeholder={"Bihar"}/>
+                    <FormTextField type={"text"} id={"stateInput"} name={"state"} value={applyInfo.state} onChange={handleChange} placeholder={"Bihar"}/>
                     {/* <input type="text" id="nameInput" name="name" /> */}
                 </div>
                 <div className="flex flex-col">
                     <label htmlFor="cityInput" className="pb-2 text-[#003F7D]">City/District *</label>
-                    <FormTextField type={"text"} id={"cityInput"} name={"city"} value={User.city} onChange={handleInput} placeholder={"Patna"}/>
+                    <FormTextField type={"text"} id={"cityInput"} name={"city"} value={applyInfo.city} onChange={handleChange} placeholder={"Patna"}/>
                     {/* <input type="text" id="nameInput" name="name" /> */}
                 </div>
                 <div className="flex flex-col">
                     <label htmlFor="pincodeInput" className="pb-2 text-[#003F7D]">Pin Code *</label>
-                    <FormTextField type={"number"} id={"pincodeInput"} name={"pincode"} value={User.pincode} onChange={handleInput} placeholder={"800004"}/>
+                    <FormTextField type={"text"} id={"pincodeInput"} name={"pincode"} value={applyInfo.pincode} onChange={handleChange} placeholder={"800004"}/>
                     {/* <input type="text" id="nameInput" name="name" /> */}
                 </div>
 
@@ -131,7 +177,7 @@ const FrenchiseApplyForm = () => {
             </div>
             <div className="flex flex-col pt-4">
                 <label htmlFor="addressInput" className="pb-2 text-[#003F7D]">Address *</label>
-                <FormTextArea id={"addressInput"} name={"address"} value={User.address} onChange={handleInput} placeholder={"Type your address..."}/>
+                <FormTextArea id={"addressInput"} name={"address"} value={applyInfo.address} onChange={handleChange} placeholder={"Type your address..."}/>
                 {/* <textarea id="messageInput" name="message"></textarea> */}
             </div>
 

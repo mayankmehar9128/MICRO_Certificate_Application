@@ -52,6 +52,10 @@ const FrenchiseAprovedSchema = new Schema({
         type: 'string', // Store the MIME type (e.g., 'image/jpeg', 'image/png')
         required: false,
     },
+    creditcoins: { 
+        type: Number, 
+        default: 0 
+    }, // Initialize with 0 coins
 });
 
 

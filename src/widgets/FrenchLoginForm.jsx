@@ -1,40 +1,96 @@
-import React, { useRef } from "react"
+import React, { useRef, useState } from "react"
 import LoginTextField from "../reUsableComponents/LoginTextField";
+import { Navigate, useNavigate } from "react-router-dom";
+import { handleError, handleSuccess } from "@/Util";
+
 
 const FrenchiseLoginForm = () => {
-  // create a Ref to access our form element
-  const frenchiseLoginformRef = useRef(null)
 
-  const sendFormData = async (event) => {
-    // this will prevent your form to redirect to another page.
-    event.preventDefault();
-
-    if(!frenchiseLoginformRef.current){
-      console.log('something wrong with form ref')
-      return
-    }
-
-    // get our form data
-    const frenchiseLoginformData = new FormData(frenchiseLoginformRef.current)
-
-    // add some additional data if you want
-    // formData.append('language', window.navigator.language)
-
-    fetch('https://formcarry.com/s/{Your-Unique-Endpoint}', {
-      method: 'POST',
-      body: frenchiseLoginformData,
-      headers: {
-				// you don't have to set Content-Type
-				// otherwise it won't work due to boundary!
-        Accept: 'application/json'
-      }
-    })
-    // convert response to json
-    .then(r => r.json())
-    .then(res => {
-      console.log(res);
-    });
-  }
+  const [frenchiseLoginInfo, setFrenchiseLoginInfo] = useState({
+    email: '',
+    password: ''
+   })
+ 
+   const navigate = useNavigate();
+ 
+   const handleChange = (e) => {
+     const { name, value } = e.target;
+     setFrenchiseLoginInfo((prev) => ({ ...prev, [name]: value }));
+   };
+ 
+   const validateInputs = () => {
+     const { username, password} = frenchiseLoginInfo;
+ 
+     // Email Validation
+    //  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    //  if (!emailRegex.test(email)) {
+    //    handleError("Invalid email format");
+    //    return false;
+    //  }
+ 
+    //  // Contact Number Validation
+    //  if (contectno.length !== 10 || isNaN(contectno)) {
+    //    handleError("Invalid contact number. It should be 10 digits.");
+    //    return false;
+    //  }
+ 
+    //  // Pincode Validation
+    //  if (pincode.length !== 6 || isNaN(pincode)) {
+    //    handleError("Invalid pincode. It should be 6 digits.");
+    //    return false;
+    //  }
+ 
+     return true;
+   };
+ 
+   const handleAdminLogin = async (e) => {
+     e.preventDefault();
+ 
+     // Validation
+     if (!validateInputs()) return;
+ 
+     const {
+       email,
+       password
+     } = frenchiseLoginInfo;
+ 
+     if ( !email || !password) {
+       return handleError("All fields are required");
+     }
+ 
+     try {
+       const url = "http://localhost:8080/auth/frenchiselogin";
+       const response = await fetch(url, {
+         method: "POST",
+         headers: {
+           "Content-Type": "application/json",
+         },
+         body: JSON.stringify(frenchiseLoginInfo),
+       });
+ 
+       const result = await response.json();
+       const { success, message, jwtToken, email, centercode, centername, creditcoins,  error } = result;
+ 
+       if (success) {
+         handleSuccess(message);
+         localStorage.setItem("token", jwtToken);
+         localStorage.setItem("LogedInFrenchiseEmail", email);
+         localStorage.setItem("LogedInFrenchiseCenterCode", centercode);
+         localStorage.setItem("LogedInFrenchiseCenterName", centername); 
+         localStorage.setItem("LogedInFrenchiseCreditCoins", creditcoins);
+         setTimeout(() => {
+           navigate("/frenchise/*");
+         }, 1000);
+       } else if (error) {
+         const details = error?.[0]?.message || "An error occurred";
+         handleError(details);
+       }else if(message) {
+         handleError(message);
+       }
+     } catch (err) {
+       handleError(err.message);
+     }
+   };
 
   return (
      // bind formRef to our form element
@@ -43,16 +99,16 @@ const FrenchiseLoginForm = () => {
         <div className="text-xl text-[#003F7D] font-semibold"><p>Center Log In</p></div>
       </div>
       <br />
-        <form ref={frenchiseLoginformRef} onSubmit={sendFormData}>
+        <form onSubmit={handleAdminLogin}>
             <div className="grid grid-cols-1 gap-12">
               <div className="flex flex-col">
                 {/* <label htmlFor="emailInput" className="pb-2 text-[#003F7D]">User Email</label> */}
-                <LoginTextField type={"email"} id={"emailInput"} name={"email"} placeholder={"User Email"}/>
+                <LoginTextField type={"email"} id={"emailInput"} name={"email"} value={frenchiseLoginInfo.email} onChange={handleChange} placeholder={"User Email"}/>
                 {/* <input type="text" id="nameInput" name="name" /> */}
               </div>
               <div className="flex flex-col">
                 {/* <label htmlFor="passwordInput" className="pb-2 text-[#003F7D]">Password</label> */}
-                <LoginTextField type={"password"} id={"passwordInput"} name={"password"} placeholder={"Password"}/>
+                <LoginTextField type={"password"} id={"passwordInput"} name={"password"} value={frenchiseLoginInfo.password} onChange={handleChange} placeholder={"Password"}/>
                 {/* <input type="text" id="nameInput" name="name" /> */}
               </div>
             </div>

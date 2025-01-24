@@ -30,6 +30,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { handleError } from "@/Util";
 
 const mockData = [
   {
@@ -155,6 +156,31 @@ export const columns = [
 ];
 
 export function FrenchiseReguestDatatable() {
+
+  // const fetchFrenchiseRequest = async (req, res) => {
+  //   const [frenchiseRequest, setFrenchiseRequest] = React.useState('');
+  
+  //   try {
+  //     const url = "http://localhost:8080/auth/franchise"
+  //     const headers = {
+  //       headers: {
+  //         'Authorization' : localStorage.getItem('token')
+  //       }
+  //     }
+  //     const response = await fetch(url, headers);
+  //     const result = await response.json();
+  //     console.log(result);
+  //     setFrenchiseRequest(result);
+  //   } catch (err) {
+  //     handleError(err);
+  //   }
+  // }
+
+  // React.useEffect(() => {
+  //   fetchProducts();
+  // }, []);
+
+
   const [sorting, setSorting] = React.useState([]);
   const [columnFilters, setColumnFilters] = React.useState([]);
   const [columnVisibility, setColumnVisibility] = React.useState({});

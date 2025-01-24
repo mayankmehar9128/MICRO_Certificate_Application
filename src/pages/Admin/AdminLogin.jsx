@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { assets } from '../../assets/asset'
 import AdminLoginForm from '@/widgets/AdminLoginForm'
+import { ToastContainer } from "react-toastify";
 
 function AdminLogin() {
 
@@ -9,6 +10,7 @@ function AdminLogin() {
       <div className='flex align-middle items-center justify-center gap-28'>
         <div className=''>
           <AdminLoginForm />
+          <ToastContainer />
         </div>
         <div className='hidden sm:block'>
           <img src={assets.image31} width={400}/>

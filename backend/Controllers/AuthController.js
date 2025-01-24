@@ -61,10 +61,11 @@ const aproved = async (req, res) => {
             pincode,
             address,
             password,
+            creditcoins
         } = req.body;
 
         // Check if email is already registered
-        const existingFrenchise = await FrenchiseAprovedModel.findOne({ email });
+        const existingFrenchise = await FrenchiseAprovedModel.findOne({ email, centercode });
         if (existingFrenchise) {
             return res.status(409).json({
                 message: "Franchise already apoved.",
@@ -97,8 +98,10 @@ const aproved = async (req, res) => {
             password: hashedPassword,
             frenchiseimage: frenchiseImage,
             imagemimetype: imageMimeType,
+            creditcoins
         });
 
+        newFrenchise.creditcoins = 2000;
         await newFrenchise.save();
 
         return res.status(201).json({
@@ -110,6 +113,112 @@ const aproved = async (req, res) => {
         return res.status(500).json({
             message: "Internal server error",
             success: false,
+        });
+    }
+};
+
+// Get all approved franchises or a specific franchise by email
+const getFranchise = async (req, res) => {
+    try {
+        const { email } = req.query; // Use query param to fetch specific data
+        let franchises;
+
+        if (email) {
+            franchises = await FrenchiseAprovedModel.findOne({ email });
+            if (!franchises) {
+                return res.status(404).json({
+                    message: "Franchise not found.",
+                    success: false
+                });
+            }
+        } else {
+            franchises = await FrenchiseAprovedModel.find(); // Fetch all franchises
+        }
+
+        return res.status(200).json({
+            message: "Franchise(s) retrieved successfully.",
+            success: true,
+            data: franchises
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            message: "Internal server error",
+            success: false
+        });
+    }
+};
+
+// Update franchise details
+const updateFranchise = async (req, res) => {
+    try {
+        const { email } = req.body; // Identify the franchise by email
+
+        if (!email) {
+            return res.status(400).json({
+                message: "Email is required for updating franchise.",
+                success: false
+            });
+        }
+
+        const updatedFranchise = await FrenchiseAprovedModel.findOneAndUpdate(
+            { email },
+            { $set: req.body }, // Update with the provided fields
+            { new: true, runValidators: true } // Return the updated document
+        );
+
+        if (!updatedFranchise) {
+            return res.status(404).json({
+                message: "Franchise not found.",
+                success: false
+            });
+        }
+
+        return res.status(200).json({
+            message: "Franchise updated successfully.",
+            success: true,
+            data: updatedFranchise
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            message: "Internal server error",
+            success: false
+        });
+    }
+};
+
+// Delete franchise
+const deleteFranchise = async (req, res) => {
+    try {
+        const { email } = req.body; // Identify the franchise by email
+
+        if (!email) {
+            return res.status(400).json({
+                message: "Email is required for deleting franchise.",
+                success: false
+            });
+        }
+
+        const deletedFranchise = await FrenchiseAprovedModel.findOneAndDelete({ email });
+
+        if (!deletedFranchise) {
+            return res.status(404).json({
+                message: "Franchise not found.",
+                success: false
+            });
+        }
+
+        return res.status(200).json({
+            message: "Franchise deleted successfully.",
+            success: true,
+            data: deletedFranchise
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            message: "Internal server error",
+            success: false
         });
     }
 };
@@ -136,6 +245,12 @@ const frenchiselogin = async (req, res) => {
                 success: false,
             });
         }
+
+         // Check credit coin balance
+         if (franchise.creditcoins < 200) {
+            return res.status(403).send("Insufficient credit coins. Minimum 200 coins required to login.");
+        }
+
         const jwtToken = jwt.sign(
             { email: franchise.email, _id: franchise._id },
             process.env.JWT_SECRET,
@@ -149,7 +264,8 @@ const frenchiselogin = async (req, res) => {
             jwtToken,
             email,
             centername: franchise.centername,
-            centercode: franchise.centercode
+            centercode: franchise.centercode,
+            creditcoins: franchise.creditcoins
         });
     } catch (error) {
         console.error(error);
@@ -199,9 +315,37 @@ const adminLogin = async (req, res) => {
     }
 };
 
+const createCertificate = async (req, res) => {
+    try {
+        const { email, studentDetails } = req.body;
+
+        const franchise = await FrenchiseAprovedModel.findById({ email });
+        if (!franchise) return res.status(404).send("Franchise not found.");
+
+        // Check if franchise has enough coins
+        if (franchise.creditcoins < 20) {
+            return res.status(403).send("Insufficient credit coins. Cannot create certificate.");
+        }
+
+        // Deduct 20 coins
+        franchise.creditcoins -= 20;
+        await franchise.save();
+
+        // Certificate creation logic here
+        // ...
+
+        res.status(201).send("Certificate created successfully.");
+    } catch (err) {
+        res.status(500).send("Error creating certificate.");
+    }
+};
+
 module.exports = {
     register,
     aproved,
     frenchiselogin,
-    adminLogin
+    adminLogin,
+    getFranchise,
+    updateFranchise,
+    deleteFranchise
 }
