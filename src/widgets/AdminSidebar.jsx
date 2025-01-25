@@ -10,8 +10,8 @@ function AdminSidebar() {
 
   // Redirect to Dashboard on page load if no specific route is set
   useEffect(() => {
-    if (location.pathname === "/admin") {
-      navigate("/admin/dashboard");
+    if (location.pathname === "/admin/*") {
+      navigate("/admin/*");
     }
   }, [location.pathname, navigate]);
 
@@ -28,13 +28,13 @@ function AdminSidebar() {
         text="Dashboard"
         isOpen={openItem === "dashboard"}
         onToggle={() => handleOpen("dashboard")}
-        active={isActiveRoute("/admin/dashboard")}
+        active={isActiveRoute("/admin/admindashboard")}
       >
         <li>
           <Link
-            to="/admin/dashboard"
+            to="/admin/admindashboard"
             className={`block px-3 py-2 rounded-md ${
-              isActiveRoute("/admin/dashboard") ? "bg-indigo-200 text-indigo-800" : "hover:bg-indigo-50"
+              isActiveRoute("/admin/admindashboard") ? "bg-indigo-200 text-indigo-800" : "hover:bg-indigo-50"
             }`}
           >
             Dashboard

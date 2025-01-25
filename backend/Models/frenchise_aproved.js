@@ -56,6 +56,7 @@ const FrenchiseAprovedSchema = new Schema({
         type: Number, 
         default: 0 
     }, // Initialize with 0 coins
+    role: { type: String, enum: ['franchise'], default: 'franchise' } // Role field
 });
 
 

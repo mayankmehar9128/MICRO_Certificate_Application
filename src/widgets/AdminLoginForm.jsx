@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import LoginTextField from "../reUsableComponents/LoginTextField";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -9,39 +9,30 @@ const AdminLoginForm = () => {
   const [adminLoginInfo, setAdminLoginInfo] = useState({
      username: '',
      password: ''
-    })
+  })
+
+  const [isLoading, setIsLoading] = useState(false);
   
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   
-    const handleChange = (e) => {
-      const { name, value } = e.target;
-      setAdminLoginInfo((prev) => ({ ...prev, [name]: value }));
-    };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setAdminLoginInfo((prev) => ({ ...prev, [name]: value }));
+  };
   
-    const validateInputs = () => {
-      const { username, password} = adminLoginInfo;
-  
-      // // Email Validation
-      // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      // if (!emailRegex.test(email)) {
-      //   handleError("Invalid email format");
-      //   return false;
-      // }
-  
-      // // Contact Number Validation
-      // if (contectno.length !== 10 || isNaN(contectno)) {
-      //   handleError("Invalid contact number. It should be 10 digits.");
-      //   return false;
-      // }
-  
-      // // Pincode Validation
-      // if (pincode.length !== 6 || isNaN(pincode)) {
-      //   handleError("Invalid pincode. It should be 6 digits.");
-      //   return false;
-      // }
-  
-      return true;
-    };
+  const validateInputs = () => {
+    const { username, password } = adminLoginInfo;
+
+    // if (username.length < 4) {
+    //   handleError("Username must be at least 4 characters long");
+    //   return false;
+    // }
+    // if (password.length < 6) {
+    //   handleError("Password must be at least 6 characters long");
+    //   return false;
+    // }
+    return true;
+  };
   
     const handleAdminLogin = async (e) => {
       e.preventDefault();
@@ -62,6 +53,7 @@ const AdminLoginForm = () => {
       }
   
       try {
+        setIsLoading(true);
         const url = "http://localhost:8080/auth/admin/login";
         const response = await fetch(url, {
           method: "POST",
@@ -70,17 +62,34 @@ const AdminLoginForm = () => {
           },
           body: JSON.stringify(adminLoginInfo),
         });
+
+        if (!response.ok) {
+          handleError(`Error: ${response.statusText}`);
+          setIsLoading(false);
+          return;
+        }
   
         const result = await response.json();
-        const { success, message, jwtToken, username, error } = result;
-        localStorage.setItem("token", jwtToken);
-        localStorage.setItem("LogedInAdminEmail", username);
+        const { success, message, token, username, role, error } = result;
   
         if (success) {
           handleSuccess(message);
-          setTimeout(() => {
-            navigate("/admin/*");
-          }, 1000);
+          
+          localStorage.setItem("token", token);
+          localStorage.setItem("LogedInAdmin", username);
+          localStorage.setItem("LogedInRole", role);
+          localStorage.setItem("LogedIn", true);
+
+          window.dispatchEvent(new Event("storage"));
+
+          if(result.role == "admin"){
+            setTimeout(() => {
+              navigate("/admin/*");
+            }, 1000);
+          }else {
+            navigate("/AdminLogin");
+          }
+          
         } else if (error) {
           const details = error?.[0]?.message || "An error occurred";
           handleError(details);
@@ -89,6 +98,8 @@ const AdminLoginForm = () => {
         }
       } catch (err) {
         handleError(err.message);
+      }finally {
+        setIsLoading(false);
       }
     };
 
@@ -130,7 +141,7 @@ const AdminLoginForm = () => {
               type="submit"
               className="bg-[#003F7D] p-1 pl-12 pr-12 text-white rounded-md"
             >
-              Login
+              {isLoading ? "Logging in..." : "Login"}
             </button>
           </div>
         </div>

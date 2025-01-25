@@ -1,11 +1,10 @@
-import React, { useRef, useState } from "react"
+import React, { useContext, useRef, useState } from "react"
 import LoginTextField from "../reUsableComponents/LoginTextField";
 import { Navigate, useNavigate } from "react-router-dom";
 import { handleError, handleSuccess } from "@/Util";
 
 
 const FrenchiseLoginForm = () => {
-
   const [frenchiseLoginInfo, setFrenchiseLoginInfo] = useState({
     email: '',
     password: ''
@@ -69,18 +68,30 @@ const FrenchiseLoginForm = () => {
        });
  
        const result = await response.json();
-       const { success, message, jwtToken, email, centercode, centername, creditcoins,  error } = result;
+       const { success, message, token, email, centercode, centername, creditcoins, role,  error } = result;
  
        if (success) {
          handleSuccess(message);
-         localStorage.setItem("token", jwtToken);
+         localStorage.setItem("token", token);
          localStorage.setItem("LogedInFrenchiseEmail", email);
          localStorage.setItem("LogedInFrenchiseCenterCode", centercode);
          localStorage.setItem("LogedInFrenchiseCenterName", centername); 
          localStorage.setItem("LogedInFrenchiseCreditCoins", creditcoins);
-         setTimeout(() => {
-           navigate("/frenchise/*");
-         }, 1000);
+         localStorage.setItem("LogedInRole", role);
+         localStorage.setItem("LogedIn", true);
+
+         window.dispatchEvent(new Event("storage"));
+
+        if(result.role == "franchise"){
+          setTimeout(() => {
+            navigate("/frenchise/*");
+          }, 1000);
+        }else {
+          navigate("/FrenchiseLogin");
+        }
+        //  setTimeout(() => {
+        //    navigate("/frenchise/dashboard");
+        //  }, 1000);
        } else if (error) {
          const details = error?.[0]?.message || "An error occurred";
          handleError(details);

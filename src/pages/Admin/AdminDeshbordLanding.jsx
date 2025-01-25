@@ -9,6 +9,7 @@ import { FrenchiseReguestDatatable } from "@/reUsableComponents/FrenchiseReguest
 import FrenchiseDetail from "./FrenchiseDetils";
 import { useEffect, useState } from "react";
 import { handleSuccess } from "@/Util";
+// import ProtectedRoute from "@/widgets/ProtectedRoute";
 
 function AdminDashboard() {
 
@@ -16,12 +17,14 @@ function AdminDashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setloggedInAdmin(localStorage.getItem('LogedInAdminEmail'))
+    setloggedInAdmin(localStorage.getItem('LogedInAdmin'))
   }, [])
 
   const hanleLogout = (e) => {
     localStorage.removeItem('token');
-    localStorage.removeItem('LogedInAdminEmail');
+    localStorage.removeItem('LogedInAdmin');
+    localStorage.removeItem('LogedInRole');
+    localStorage.removeItem('LogedIn');
     handleSuccess('User Loggedout')
     setTimeout(function () {
       navigate('/home');
@@ -33,14 +36,18 @@ function AdminDashboard() {
       <AdminSidebar />
       <main className="flex-1 w-full p-4 bg-gray-100 overflow-auto">
         <Routes>
-          <Route path="/dashboard" element={<p>View Deshbord Content{loggedInAdmin}</p>} />
-          <Route path="/add-center" element={<AddCenter />} />
-          <Route path="/view-center" element={<FrenchiseDetail />} />
-          <Route path="/add-course" element={<AddCourse />} />
-          <Route path="/view-course" element={<p>View Course Content</p>} />
-          <Route path="/frenchise-details" element={<AdminAddedFrenchiseDetail />} />
-          <Route path="/student-details" element={<AdminStudentDetail />} />
+          {/* <Route element={<ProtectedRoute />}> */}
+            <Route path="/admindashboard" element={<p>View Deshbord Content {loggedInAdmin}</p>} />
+            <Route path="/add-center" element={<AddCenter />} />
+            <Route path="/view-center" element={<FrenchiseDetail />} />
+            <Route path="/add-course" element={<AddCourse />} />
+            <Route path="/view-course" element={<p>View Course Content</p>} />
+            <Route path="/frenchise-details" element={<AdminAddedFrenchiseDetail />} />
+            <Route path="/student-details" element={<AdminStudentDetail />} />
+          {/* </Route> */}
         </Routes>
+
+        {/* <button onClick={hanleLogout} className="bg-slate-500 text-white">Logout</button> */}
       </main>
     </div>
   );

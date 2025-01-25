@@ -13,58 +13,70 @@ import FrenchiseLogin from './pages/Frenchise/FrenchiseLogin';
 import AdminLogin from './pages/Admin/AdminLogin';
 import AdminDashboard from "./pages/Admin/AdminDeshbordLanding";
 import FrenchiseDashboard from "./pages/Frenchise/FrenchiseLanding";
-import { useState } from "react";
-import RefreshHandler from "./widgets/RefreshHandler";
-import { MicroProvider } from "./context";
+import { AuthProvider, useAuth } from "../context/Authcontext";
+import ProtectedRoute from "./widgets/ProtectedRoute";
+import PublicRoute from "./widgets/PublicRoute";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  const PrivateRoute = ({ element }) => {
-    return isAuthenticated ? element : <Navigate to= "/FrenchiseLogin" />
-  }
+  
   return (
     <div>
-    <MicroProvider>
-      <Router>
-        <RefreshHandler setIsAuthanticated={setIsAuthenticated} />
-          <Routes>
-            {/* Public Website Routes */}
-            <Route path="/*" element={<WebsiteLayout />} />
+      <AuthProvider>
+        <Router>
+            <Routes>
+              {/* Public Website Routes */}
+              <Route element={<PublicRoute />}>
+                <Route path="/*" element={<WebsiteLayout />} />
+              </Route>
 
-            {/* Admin Dashboard Routes */}
-            <Route path="/admin/*" element={<PrivateRoute element={<AdminDashboard />} />} />
 
-            {/* Frenchise Dashboard Routes */}
-            <Route path="/frenchise/*" element={<PrivateRoute element={<FrenchiseDashboard />} />} />
-          </Routes>
-      </Router>
-    </MicroProvider>
+
+              {/* Admin Dashboard Routes */}
+
+
+              {/* Protected Routes */}
+              
+              <Route element={<ProtectedRoute />}>
+
+                <Route path="/admin/*" element={<AdminDashboard />} />
+
+                <Route path="/frenchise/*" element={<FrenchiseDashboard /> } />
+
+                {/* <Route path="/admin/dashboard" element={<PrivateRoute element={<AdminDashboard />} allowedRoles={["admin"]}/>} /> */}
+
+              </Route>
+            </Routes>
+        </Router>
+      </AuthProvider>
     </div>
     
   );
 }
 
 function WebsiteLayout() {
+
   return (
     <>
-      <Header />
-      <div>
-        <Routes>
-          <Route path="/" element={<Navigate to="/home" />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/AboutUs" element={<About />} />
-          <Route path="/ContactUs" element={<ContectUs />} />
-          <Route path="/course" element={<Course />} />
-          <Route path="/StudentEnq" element={<StudentEnq />} />
-          <Route path="/StudentLogin" element={<StudentLogin />} />
-          <Route path="/StudentSearch" element={<StudentSearch />} />
-          <Route path="/FrenchiseReg" element={<FrenchiseReg />} />
-          <Route path="/FrenchiseLogin" element={<FrenchiseLogin />} />
-          <Route path="/AdminLogin" element={<AdminLogin />} />
-        </Routes>
-      </div>
-      <Footer />
+        <Header />
+          <div>
+            <Routes>
+
+              {/* Unauthorized routes */}
+              <Route path="/" element={<Navigate to="/home" replace />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/AboutUs" element={<About />} />
+              <Route path="/ContactUs" element={<ContectUs />} />
+              <Route path="/course" element={<Course />} />
+              <Route path="/StudentEnq" element={<StudentEnq />} />
+              <Route path="/StudentLogin" element={<StudentLogin />} />
+              <Route path="/StudentSearch" element={<StudentSearch />} />
+              <Route path="/FrenchiseReg" element={<FrenchiseReg />} />
+              <Route path="/FrenchiseLogin" element={<FrenchiseLogin />} />
+              <Route path="/AdminLogin" element={<AdminLogin />} />
+              <Route path="*" element={<Navigate to="/home" replace />} />
+            </Routes>
+          </div>
+        <Footer />
     </>
   );
 }

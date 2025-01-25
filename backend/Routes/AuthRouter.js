@@ -10,10 +10,6 @@ const upload = multer({ storage });
 
 const router = require('express').Router();
 
-// router.post('/frenchiselogin', (req, res)=>{
-//     res.send('login success');
-// });
-
 // Admin login route with validation and controller
 router.post('/admin/login', adminLoginValidation, adminLogin);
 
