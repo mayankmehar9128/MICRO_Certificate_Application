@@ -13,7 +13,6 @@ import FrenchiseLogin from './pages/Frenchise/FrenchiseLogin';
 import AdminLogin from './pages/Admin/AdminLogin';
 import AdminDashboard from "./pages/Admin/AdminDeshbordLanding";
 import FrenchiseDashboard from "./pages/Frenchise/FrenchiseLanding";
-import { AuthProvider, useAuth } from "../context/Authcontext";
 import ProtectedRoute from "./widgets/ProtectedRoute";
 import PublicRoute from "./widgets/PublicRoute";
 
@@ -21,7 +20,6 @@ function App() {
   
   return (
     <div>
-      <AuthProvider>
         <Router>
             <Routes>
               {/* Public Website Routes */}
@@ -47,7 +45,6 @@ function App() {
               </Route>
             </Routes>
         </Router>
-      </AuthProvider>
     </div>
     
   );
