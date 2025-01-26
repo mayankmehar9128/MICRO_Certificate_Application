@@ -129,7 +129,7 @@ function Header() {
                 onClick={toggleMenu}
               >
                 <NavLink
-                  to="/"
+                  to="/home"
                   className={({ isActive }) =>
                     isActive ? "text-[#F98149] text-lg" : ""
                   }
@@ -238,7 +238,7 @@ function Header() {
             {/* Large Screen NavLinks */}
             <div className=" pt-1 pl-2 pr-2 pb-1">
               <NavLink
-                to="/"
+                to="/home"
                 className={({ isActive }) =>
                   isActive
                     ? "text-white hover:bg-orange-400 bg-orange-400 rounded-md hover:text-white transition-all pl-2 pr-2 pt-1 pb-1"

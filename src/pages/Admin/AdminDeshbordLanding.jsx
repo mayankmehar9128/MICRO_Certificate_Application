@@ -7,35 +7,30 @@ import AdminAddedFrenchiseDetail from '../../pages/Admin/AdminAddedFrenchiseTabl
 import AdminStudentDetail from '../../pages/Admin/StudentDetails';
 import { FrenchiseReguestDatatable } from "@/reUsableComponents/FrenchiseReguestDatatable";
 import FrenchiseDetail from "./FrenchiseDetils";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { handleSuccess } from "@/Util";
+import { ToastContainer } from "react-toastify";
+import { AuthContext } from "../../../context/Authcontext";
 
 function AdminDashboard() {
 
-  const [loggedInAdmin, setloggedInAdmin] = useState('');
-  const navigate = useNavigate();
+  const authDetails = useContext(AuthContext);
 
-  useEffect(() => {
-    setloggedInAdmin(localStorage.getItem('LogedInAdmin'))
-  }, [])
+  // const [loggedInAdmin, setloggedInAdmin] = useState('');
+  // const navigate = useNavigate();
 
-  const hanleLogout = (e) => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('LogedInAdmin');
-    localStorage.removeItem('LogedInRole');
-    localStorage.removeItem('LogedIn');
-    handleSuccess('User Loggedout')
-    setTimeout(function () {
-      navigate('/home');
-    }, 1000)
-  }
+  // useEffect(() => {
+  //   setloggedInAdmin(localStorage.getItem('LogedInAdmin'))
+  // }, [])
+
 
   return (
     <div className="flex h-screen">
+      <ToastContainer />
       <AdminSidebar />
       <main className="flex-1 w-full p-4 bg-gray-100 overflow-auto">
         <Routes>
-              <Route path="/admindashboard" element={<p>View Deshbord Content {loggedInAdmin}</p>} />
+              <Route path="/admindashboard" element={<p>View Deshbord Content {authDetails.LogedInUsername}</p>} />
               <Route path="/add-center" element={<AddCenter />} />
               <Route path="/view-center" element={<FrenchiseDetail />} />
               <Route path="/add-course" element={<AddCourse />} />

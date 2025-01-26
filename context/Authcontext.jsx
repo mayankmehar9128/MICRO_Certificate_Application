@@ -1,12 +1,15 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [authDetails, setAuthDetails] = useState({
     isLoggedIn: localStorage.getItem("LogedIn") === "true",
     roleType: localStorage.getItem("LogedInRole") || "guest",
     token: localStorage.getItem("token") || "",
+    LogedInUsername: localStorage.getItem("LogedInUsername"),
+    LogedInEmail: localStorage.getItem("LogedInEmail"),
+    
   });
 
     // Update authDetails when localStorage changes
@@ -15,6 +18,8 @@ export function AuthProvider({ children }) {
       isLoggedIn: localStorage.getItem("LogedIn") === "true",
       roleType: localStorage.getItem("LogedInRole") || "guest",
       token: localStorage.getItem("token") || "",
+      LogedInUsername: localStorage.getItem("LogedInUsername"),
+      LogedInEmail: localStorage.getItem("LogedInEmail"),
     });
   };
 
@@ -31,14 +36,13 @@ export function AuthProvider({ children }) {
   };
 
   const logout = () => {
-    localStorage.removeItem("LogedIn");
-    localStorage.removeItem("LogedInRole");
-    localStorage.removeItem("token");
-
+    localStorage.clear();
     setAuthDetails({
       isLoggedIn: false,
       roleType: "guest",
       token: "",
+      LogedInUsername: null,
+      LogedInEmail: null,
     });
   };
 

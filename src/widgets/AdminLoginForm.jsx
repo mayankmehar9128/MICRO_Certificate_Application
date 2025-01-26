@@ -79,7 +79,7 @@ const AdminLoginForm = () => {
           handleSuccess(message);
           
           localStorage.setItem("token", token);
-          localStorage.setItem("LogedInAdmin", username);
+          localStorage.setItem("LogedInUsername", username);
           localStorage.setItem("LogedInRole", role);
           localStorage.setItem("LogedIn", true);
 
