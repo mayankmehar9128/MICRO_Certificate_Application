@@ -2,50 +2,35 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../../context/Authcontext";
 import { useEffect, useState } from "react";
 
-// function ProtectedRoute() {
-//     const { isLoggedIn, roleType, token } = useAuth();
+const ProtectedRoute = ({ allowedRoles } ) => {
+  const { isLoggedIn, roleType, token } = useAuth();
+  const [authDetails, setAuthDetails] = useState({ isLoggedIn, roleType, token });
 
-//     console.log("Auth Details:", { isLoggedIn, roleType, token });
-  
-//     if (isLoggedIn && roleType === "admin" && token) {
-//       return <Outlet />;
-//     }else if(isLoggedIn && roleType === "franchise" && token){
-//         return <Outlet />;
-//     }
-  
-//     return <Navigate to="/home" />;
-// }
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setAuthDetails({
+        isLoggedIn: localStorage.getItem("LogedIn") === "true",
+        roleType: localStorage.getItem("LogedInRole") || "guest",
+        token: localStorage.getItem("token") || "",
+      });
+    };
 
-// export default ProtectedRoute;
+    window.addEventListener("storage", handleStorageChange);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
 
-
-
-const ProtectedRoute = () => {
-    const { isLoggedIn, roleType, token } = useAuth();
-    const [authDetails, setAuthDetails] = useState({ isLoggedIn, roleType, token });
-  
-    useEffect(() => {
-      const handleStorageChange = () => {
-        setAuthDetails({
-          isLoggedIn: localStorage.getItem("LogedIn") === "true",
-          roleType: localStorage.getItem("LogedInRole") || "guest",
-          token: localStorage.getItem("token") || "",
-        });
-      };
-  
-      window.addEventListener("storage", handleStorageChange);
-      return () => {
-        window.removeEventListener("storage", handleStorageChange);
-      };
-    }, []);
-  
-    if (authDetails.isLoggedIn && authDetails.roleType === "admin" && authDetails.token) {
-      return <Outlet />;
-    } else if(authDetails.isLoggedIn && authDetails.roleType === "franchise" && authDetails.token){
-        return <Outlet />;
-    }
-  
+  if (!authDetails.isLoggedIn || !authDetails.token) {
     return <Navigate to="/home" />;
-  };
-  
+  }
+
+  if (allowedRoles && !allowedRoles.includes(roleType)) {
+    // Redirect to home or a "not authorized" page if the role doesn't match
+    return <Navigate to="/home" />;
+  }
+
+  return <Outlet />;
+};
+
 export default ProtectedRoute;

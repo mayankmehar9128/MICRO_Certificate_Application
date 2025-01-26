@@ -3,9 +3,12 @@ import LoginTextField from "../reUsableComponents/LoginTextField";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { handleError, handleSuccess } from "@/Util";
+import { useAuth } from "../../context/Authcontext";
 
 
 const AdminLoginForm = () => {
+
+  const { login } = useAuth();
   const [adminLoginInfo, setAdminLoginInfo] = useState({
      username: '',
      password: ''
@@ -79,6 +82,8 @@ const AdminLoginForm = () => {
           localStorage.setItem("LogedInAdmin", username);
           localStorage.setItem("LogedInRole", role);
           localStorage.setItem("LogedIn", true);
+
+          login(role, token);
 
           window.dispatchEvent(new Event("storage"));
 

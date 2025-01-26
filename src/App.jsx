@@ -28,20 +28,15 @@ function App() {
               </Route>
 
 
-
-              {/* Admin Dashboard Routes */}
-
-
-              {/* Protected Routes */}
-              
-              <Route element={<ProtectedRoute />}>
-
+                {/* Admin Protected Routes */}
+              <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
                 <Route path="/admin/*" element={<AdminDashboard />} />
+              </Route>
+              
 
-                <Route path="/frenchise/*" element={<FrenchiseDashboard /> } />
-
-                {/* <Route path="/admin/dashboard" element={<PrivateRoute element={<AdminDashboard />} allowedRoles={["admin"]}/>} /> */}
-
+              {/* Franchise Protected Routes */}
+              <Route element={<ProtectedRoute allowedRoles={['franchise']} />}>
+                <Route path="/frenchise/*" element={<FrenchiseDashboard />} />
               </Route>
             </Routes>
         </Router>
@@ -57,8 +52,6 @@ function WebsiteLayout() {
         <Header />
           <div>
             <Routes>
-
-              {/* Unauthorized routes */}
               <Route path="/" element={<Navigate to="/home" replace />} />
               <Route path="/home" element={<Home />} />
               <Route path="/AboutUs" element={<About />} />

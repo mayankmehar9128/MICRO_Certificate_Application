@@ -5,7 +5,6 @@ import { FrenchiseStudentsDatatable } from "@/reUsableComponents/FrenchiseAddStu
 import { useContext, useEffect, useState } from "react";
 import { handleSuccess } from "@/Util";
 import { ToastContainer } from "react-toastify";
-import { MicroContext } from "@/context";
 
 function FrenchiseDashboard() {
   const [loggedInFrenchise, setloggedInFrenchise] = useState('');
@@ -26,18 +25,17 @@ function FrenchiseDashboard() {
     }, 1000)
   }
 
-  // const CompanyId = useContext(MicroContext);
   return (
     <div className="flex h-screen">
       <ToastContainer />
       <FrenchiseSidebar />
       <main className="flex-1 w-full p-4 bg-gray-100 overflow-auto">
-        <Routes>
-          <Route path="/dashboard" element={<p>View Deshbord Content{loggedInFrenchise}</p>} />
-          <Route path="/add-student" element={<AddStudent />} />
-          <Route path="/view-student" element={<FrenchiseStudentsDatatable />} />
-          <Route path="/transaction-history" element={<p>View Transaction History Content</p>} />
-        </Routes>
+          <Routes>
+                <Route path="/dashboard" element={<p>View Deshbord Content{loggedInFrenchise}</p>} />
+                <Route path="/add-student" element={<AddStudent />} />
+                <Route path="/view-student" element={<FrenchiseStudentsDatatable />} />
+                <Route path="/transaction-history" element={<p>View Transaction History Content</p>} />
+            </Routes>
       </main>
     </div>
   );

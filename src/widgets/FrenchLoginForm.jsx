@@ -2,9 +2,12 @@ import React, { useContext, useRef, useState } from "react"
 import LoginTextField from "../reUsableComponents/LoginTextField";
 import { Navigate, useNavigate } from "react-router-dom";
 import { handleError, handleSuccess } from "@/Util";
+import { useAuth } from "../../context/Authcontext";
 
 
 const FrenchiseLoginForm = () => {
+
+  const { login } = useAuth();
   const [frenchiseLoginInfo, setFrenchiseLoginInfo] = useState({
     email: '',
     password: ''
@@ -73,12 +76,14 @@ const FrenchiseLoginForm = () => {
        if (success) {
          handleSuccess(message);
          localStorage.setItem("token", token);
-         localStorage.setItem("LogedInFrenchiseEmail", email);
+         localStorage.setItem("LogedInEmail", email);
          localStorage.setItem("LogedInFrenchiseCenterCode", centercode);
-         localStorage.setItem("LogedInFrenchiseCenterName", centername); 
+         localStorage.setItem("LogedInUsername", centername); 
          localStorage.setItem("LogedInFrenchiseCreditCoins", creditcoins);
          localStorage.setItem("LogedInRole", role);
          localStorage.setItem("LogedIn", true);
+
+         login(role, token);
 
          window.dispatchEvent(new Event("storage"));
 

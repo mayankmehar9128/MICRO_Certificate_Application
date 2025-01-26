@@ -9,12 +9,36 @@ export function AuthProvider({ children }) {
     token: localStorage.getItem("token") || "",
   });
 
-  // Update authDetails when localStorage changes
+    // Update authDetails when localStorage changes
   const updateAuthDetails = () => {
     setAuthDetails({
       isLoggedIn: localStorage.getItem("LogedIn") === "true",
       roleType: localStorage.getItem("LogedInRole") || "guest",
       token: localStorage.getItem("token") || "",
+    });
+  };
+
+  const login = (role, token) => {
+    localStorage.setItem("LogedIn", "true");
+    localStorage.setItem("LogedInRole", role);
+    localStorage.setItem("token", token);
+
+    setAuthDetails({
+      isLoggedIn: true,
+      roleType: role,
+      token: token,
+    });
+  };
+
+  const logout = () => {
+    localStorage.removeItem("LogedIn");
+    localStorage.removeItem("LogedInRole");
+    localStorage.removeItem("token");
+
+    setAuthDetails({
+      isLoggedIn: false,
+      roleType: "guest",
+      token: "",
     });
   };
 
@@ -26,11 +50,12 @@ export function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={authDetails}>
+    <AuthContext.Provider value={{ ...authDetails, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 }
+
 
 export function useAuth() {
   const context = useContext(AuthContext);
