@@ -19,10 +19,10 @@ export default function Sidebar({ children }) {
 
     const handleLogout = () => {
       logout(); // Clear authentication state
-      handleSuccess('User Loggedout');
       setTimeout(function () {
         navigate('/home');
       }, 1000)
+      handleSuccess('User Loggedout');
     };
 
     const handleViewProfile = () => {

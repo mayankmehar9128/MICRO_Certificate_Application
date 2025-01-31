@@ -37,13 +37,13 @@ const FrenchiseApplyForm = () => {
     }
 
     // Contact Number Validation
-    if (contectno.length !== 10 || isNaN(contectno)) {
+    if (contectno.length < 10 || isNaN(contectno)) {
       handleError("Invalid contact number. It should be 10 digits.");
       return false;
     }
 
     // Pincode Validation
-    if (pincode.length !== 6 || isNaN(pincode)) {
+    if (pincode.length < 6 || isNaN(pincode)) {
       handleError("Invalid pincode. It should be 6 digits.");
       return false;
     }

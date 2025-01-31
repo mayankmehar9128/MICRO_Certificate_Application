@@ -7,6 +7,8 @@ import HerosecFillBtn from "../reUsableComponents/Herosecfillbtn";
 import React from "react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { useNavigate } from "react-router-dom";
+import { Icon, icons } from "lucide-react";
+import { Icons } from "react-toastify";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -302,11 +304,24 @@ function Header() {
                 to="/FrenchiseReg"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-white hover:bg-orange-400 bg-orange-400 rounded-md hover:text-white transition-all pl-2 pr-2 pt-1 pb-1"
-                    : ""
+                    ? "flex items-center justify-between text-white hover:bg-orange-400 bg-orange-400 rounded-md hover:text-white transition-all pl-2 pr-2 pt-1 pb-1"
+                    : "flex items-center justify-between"
                 }
               >
-                Frenchise Registration
+                Frenchise Registration <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="w-4 h-4 ml-2 group-hover:rotate-180 transition-transform"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
               </NavLink>
 
               {/* Dropdown Container */}
@@ -330,6 +345,7 @@ function Header() {
                   }
                 >
                   Frenchise Login
+                              
                 </NavLink>
               </div>
             </div>
@@ -338,11 +354,24 @@ function Header() {
                 to="/StudentEnq"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-white hover:bg-orange-400 bg-orange-400 rounded-md hover:text-white transition-all pl-2 pr-2 pt-1 pb-1"
-                    : ""
+                    ? "flex items-center justify-between text-white hover:bg-orange-400 bg-orange-400 rounded-md hover:text-white transition-all pl-2 pr-2 pt-1 pb-1"
+                    : "flex items-center justify-between"
                 }
               >
-                Student Enquiry
+                Student Enquiry <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="w-4 h-4 ml-2 group-hover:rotate-180 transition-transform"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
               </NavLink>
 
               {/* Dropdown Container */}
