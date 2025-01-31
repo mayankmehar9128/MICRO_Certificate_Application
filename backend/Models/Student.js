@@ -3,6 +3,11 @@ const Schema = mongoose.Schema;
 
 
 const StudentsSchema = new Schema({
+    certificatenumber: { 
+        type: String, 
+        unique: true, 
+        required: true 
+    }, // Auto-generated certificate number
     studentname: {
         type: 'string',
         required: true,
