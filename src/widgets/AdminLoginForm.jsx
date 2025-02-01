@@ -57,11 +57,12 @@ const AdminLoginForm = () => {
   
       try {
         setIsLoading(true);
-        const url = "http://localhost:8080/auth/admin/login";
+        const url = "http://localhost:8080/auth/api/admin/login";
         const response = await fetch(url, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${sessionStorage.getItem("token")}`
           },
           body: JSON.stringify(adminLoginInfo),
         });
@@ -78,10 +79,10 @@ const AdminLoginForm = () => {
         if (success) {
           handleSuccess(message);
           
-          localStorage.setItem("token", token);
-          localStorage.setItem("LogedInUsername", username);
-          localStorage.setItem("LogedInRole", role);
-          localStorage.setItem("LogedIn", true);
+          sessionStorage.setItem("token", token);
+          sessionStorage.setItem("LogedInUsername", username);
+          sessionStorage.setItem("LogedInRole", role);
+          sessionStorage.setItem("LogedIn", true);
 
           login(role, token);
 

@@ -61,11 +61,12 @@ const FrenchiseLoginForm = () => {
      }
  
      try {
-       const url = "http://localhost:8080/auth/frenchiselogin";
+       const url = "http://localhost:8080/auth/api/frenchiselogin";
        const response = await fetch(url, {
          method: "POST",
          headers: {
            "Content-Type": "application/json",
+            "Authorization": `Bearer ${sessionStorage.getItem("token")}`
          },
          body: JSON.stringify(frenchiseLoginInfo),
        });
@@ -75,13 +76,13 @@ const FrenchiseLoginForm = () => {
  
        if (success) {
          handleSuccess(message);
-         localStorage.setItem("token", token);
-         localStorage.setItem("LogedInEmail", email);
-         localStorage.setItem("LogedInFrenchiseCenterCode", centercode);
-         localStorage.setItem("LogedInUsername", centername); 
-         localStorage.setItem("LogedInFrenchiseCreditCoins", creditcoins);
-         localStorage.setItem("LogedInRole", role);
-         localStorage.setItem("LogedIn", true);
+         sessionStorage.setItem("token", token);
+         sessionStorage.setItem("LogedInEmail", email);
+         sessionStorage.setItem("LogedInFrenchiseCenterCode", centercode);
+         sessionStorage.setItem("LogedInUsername", centername); 
+         sessionStorage.setItem("LogedInFrenchiseCreditCoins", creditcoins);
+         sessionStorage.setItem("LogedInRole", role);
+         sessionStorage.setItem("LogedIn", true);
 
          login(role, token);
 

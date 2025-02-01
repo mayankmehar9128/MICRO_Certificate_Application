@@ -86,7 +86,7 @@ const FrenchiseApplyForm = () => {
         }
 
         try {
-        const url = "http://localhost:8080/auth/register";
+        const url = "http://localhost:8080/frenchises/api/register";
         const response = await fetch(url, {
             method: "POST",
             headers: {

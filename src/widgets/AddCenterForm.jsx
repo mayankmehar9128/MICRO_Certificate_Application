@@ -96,7 +96,7 @@ const AddCenter = () => {
             ApprovedFrenchise.append("picture", picture);
           }
     
-          const response = await fetch("http://localhost:8080/auth/aproved", {
+          const response = await fetch("http://localhost:8080/frenchises/api/aproved", {
             method: "POST",
             body: ApprovedFrenchise, // Do not set Content-Type; it will be set automatically
           });

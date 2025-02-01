@@ -9,9 +9,9 @@ const ProtectedRoute = ({ allowedRoles } ) => {
   useEffect(() => {
     const handleStorageChange = () => {
       setAuthDetails({
-        isLoggedIn: localStorage.getItem("LogedIn") === "true",
-        roleType: localStorage.getItem("LogedInRole") || "guest",
-        token: localStorage.getItem("token") || "",
+        isLoggedIn: sessionStorage.getItem("LogedIn") === "true",
+        roleType: sessionStorage.getItem("LogedInRole") || "guest",
+        token: sessionStorage.getItem("token") || "",
       });
     };
 
